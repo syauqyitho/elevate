@@ -26,7 +26,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="<?= base_url('activity/index') ?>" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+              <i class="nav-icon far fa-paper-plane"></i>
               <p>
                 Jasa
               </p>

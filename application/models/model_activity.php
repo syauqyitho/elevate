@@ -22,4 +22,10 @@ class Model_activity extends CI_Model {
        $this->db->insert('activity_detail', $activity_detail);
        $this->db->trans_complete();
     }
+    
+    public function detail($id) {
+        $params = array('activity_id' => $id);
+        
+        return $this->db->get_where('activity', $params);
+    }
 }

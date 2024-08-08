@@ -6,6 +6,7 @@ class Activity extends CI_Controller {
         parent::__construct();
         $this->load->library('slice');
         $this->load->model('model_activity');
+        $this->load->model('model_activity_detail');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
     }
@@ -17,17 +18,11 @@ class Activity extends CI_Controller {
     
     public function add() {
         if (isset($_POST['submit'])) {
-            // $this->load->library('upload', $config);
-            // $config['upload_path']          = './uploads/';
-            // $config['allowed_types']        = 'gif|jpg|png|jpeg';
-            // $config['max_size']             = 100;
-            // $config['max_width']            = 1024;
-            // $config['max_height']           = 768;
-            // config for upload library 
             $this->upload->initialize(array(
                 'upload_path' => './uploads',
                 'allowed_types' => 'jpg|png|jpeg'
             ));
+            // wrong time location
             $created_at = mdate('%Y-%m-%d %H:%i:%s', now());
 
 
@@ -63,5 +58,17 @@ class Activity extends CI_Controller {
             $data['constrains'] = $this->model_constrain_category->index()->result();
             $this->slice->view('activity.add', $data);
         }
+    }
+    
+    public function detail() {
+        $id = $this->uri->segment(3);
+        $data['activities'] = $this->model_activity_detail->detail($id)->row_array();
+        // $data['activities'] = $this->model_activity_category->index()->result();
+        // $data['constrains'] = $this->model_constrain_category->index()->result();
+        // $data['activity'] = $this->model_activity->detail($id)->row_array();
+        // print_r($data);
+        // exit;
+
+        $this->slice->view('activity.detail', $data);
     }
 }

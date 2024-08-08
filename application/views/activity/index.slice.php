@@ -22,7 +22,7 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0" style="height: 400px;">
                 <table class="table table-head-fixed text-nowrap">
                   <!-- <thead>
                     <tr>
@@ -49,7 +49,7 @@
                         </td>
                         <td class="align-middle"><?= $act->status ?></td>
                         <td class="align-middle">
-                            <?= anchor('activity/edit/'.$act->activity_id, 'Detail', array('class' => 'btn btn-primary btn-sm'))?>
+                            <?= anchor('activity/detail/'.$act->activity_id, 'Detail', array('class' => 'btn btn-primary btn-sm'))?>
                         </td>
                       </tr>
                     <?php  endforeach ?>
