@@ -12,6 +12,7 @@ class Model_activity extends CI_Model {
             from activity ac
             left join activity_detail ad on ad.activity_id = ac.activity_id
             left join activity_status st on st.activity_status_id = ac.activity_status_id';
+
         return $this->db->query($query);
     } 
     
@@ -28,4 +29,18 @@ class Model_activity extends CI_Model {
         
         return $this->db->get_where('activity', $params);
     }
+
+    public function tech_index() {
+        $query = "SELECT 
+                    ac.activity_id,
+                    ad.created_at,
+                    ad.constrain,
+                    st.activity_status_name as status 
+                  FROM activity ac
+                  LEFT JOIN activity_detail ad on ad.activity_id = ac.activity_id
+                  LEFT JOIN activity_status st on st.activity_status_id = ac.activity_status_id
+                  WHERE ac.activity_status_id = 1";
+
+        return $this->db->query($query);
+    } 
 }
