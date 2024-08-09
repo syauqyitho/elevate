@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app.user')
 <!-- @section('title', 'Tambah Transaksi Jasa') -->
 
 @section('content')
@@ -9,7 +9,7 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-                <?= form_open_multipart('activity/add') ?>
+                <?= form_open_multipart('user/activity/add') ?>
                 <div class="form-group">
                   <label for="activity_category">Kategori Jasa</label>
                   <select class="custom-select rounded-0" id="activity_category" name="activity_category">

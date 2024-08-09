@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app.user')
 @section('title', 'List Transaksi Jasa')
 
 @section('content')
@@ -7,7 +7,7 @@
             <div class="card">
               <div class="card-header">
                 <!-- <h3 class="card-title"></h3> -->
-                <a href="<?= base_url('activity/add') ?>" class="card-tools btn btn-primary">+ Transaksi Jasa</a>
+                <a href="<?= base_url('user/activity/add') ?>" class="card-tools btn btn-primary"><i class="fas fa-plus mx-1"></i>Transaksi Jasa</a>
 
                 <div class="">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -22,7 +22,7 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 400px;">
+              <div class="card-body table-responsive p-0" >
                 <table class="table table-head-fixed text-nowrap">
                   <!-- <thead>
                     <tr>
@@ -49,7 +49,7 @@
                         </td>
                         <td class="align-middle"><?= $act->status ?></td>
                         <td class="align-middle">
-                            <?= anchor('activity/detail/'.$act->activity_id, 'Detail', array('class' => 'btn btn-primary btn-sm'))?>
+                            <?= anchor('user/activity/detail/'.$act->activity_id, 'Detail', array('class' => 'btn btn-primary btn-sm'))?>
                         </td>
                       </tr>
                     <?php  endforeach ?>

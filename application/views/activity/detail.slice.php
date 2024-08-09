@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app.user')
 
 @section('title', 'Detail Transaksi Jasa')
 
@@ -79,6 +79,9 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="card-footer">
+                <a href="<?= base_url('user/activity/index') ?>" class="btn btn-primary">Kembali</a>
               </div>
               <!-- /.card-body -->
             </div>
