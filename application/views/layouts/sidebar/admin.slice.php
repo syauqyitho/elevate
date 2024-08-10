@@ -29,6 +29,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('admin/enterprise_status/index') ?>" class="nav-link">
+              <i class="nav-icon fas fa-stream"></i>
+              <p>
+                Status Badan Usaha
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

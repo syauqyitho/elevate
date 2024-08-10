@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Enterprise extends CI_Controller {
+class Enterprise_status extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('slice');
@@ -11,7 +11,7 @@ class Enterprise extends CI_Controller {
     public function index() {
         $data['enterprise_status'] = $this->model_enterprise_status->index()->result();
 
-        $this->slice->view('admin.enterprise.index', $data);
+        $this->slice->view('admin.enterprise_status.index', $data);
     }
     
     public function add() {
@@ -25,11 +25,7 @@ class Enterprise extends CI_Controller {
 
             redirect('admin/enterprise_status/index');
         } else {
-            $data['enterprise_status'] = $this->model_enterprise_status->index()->result();
-            // var_dump($data);
-            // exit;
-
-            $this->slice->view('admin.enterprise_status.add', $data); 
+            $this->slice->view('admin.enterprise_status.add'); 
         }
     }
     
@@ -45,9 +41,7 @@ class Enterprise extends CI_Controller {
             redirect('admin/enterprise_status');
         } else {
             $id = $this->uri->segment(4);
-            $data['enterprises'] = $this->model_enterprise->edit($id)->row_array();
-            // var_dump($data);
-            // exit;
+            $data['enterprise_status'] = $this->model_enterprise_status->edit($id)->row_array();
             
             $this->slice->view('admin/enterprise_status/edit', $data);
         }
