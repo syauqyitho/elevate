@@ -1,4 +1,7 @@
 @extends('layouts.app.admin')
+
+@section('title', 'List Badan Usaha')
+
 @section('content')
         <div class="row">
           <div class="col-12">
