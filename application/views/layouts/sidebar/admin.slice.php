@@ -22,6 +22,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('admin/group_of_entity/index') ?>" class="nav-link">
+              <i class="nav-icon fas fa-sitemap"></i>
+              <p>
+               Kelompok Badan Usaha
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('admin/enterprise/index') ?>" class="nav-link">
               <i class="nav-icon fas fa-briefcase"></i>
               <p>
