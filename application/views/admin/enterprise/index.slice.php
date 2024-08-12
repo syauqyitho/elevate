@@ -28,13 +28,17 @@
                   <tbody>
                     <?php $no=1; foreach ($enterprises as $ent) : ?>
                       <tr>
-                        <td class="d-flex flex-column">
-                          <p><?= $ent->enterprise_name ?></p>
-                          <p><?= $ent->enterprise_status_name ?></p>
+                        <td class="col">
+                          <div class="d-flex flex-column">
+                            <p><?= $ent->enterprise_name ?></p>
+                            <p><?= $ent->enterprise_status_name ?></p>
+                          </div>
                         </td>
                         <td class="align-middle">
-                            <?= anchor('admin/enterprise/edit/'.$ent->enterprise_id, 'Edit', array('class' => 'btn btn-warning btn-sm'))?>
-                            <?= anchor('admin/enterprise/delete/'.$ent->enterprise_id, 'Hapus', array('class' => 'btn btn-danger btn-sm'))?>
+                          <div>
+                            <a href="<?= base_url('admin/enterprise/edit/'.$ent->enterprise_id) ?>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="<?= base_url('admin/enterprise/delete/'.$ent->enterprise_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
+                          </div>
                         </td>
                       </tr>
                     <?php  endforeach ?>
