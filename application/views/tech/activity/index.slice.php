@@ -6,49 +6,24 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <!-- <h3 class="card-title"></h3> -->
-                <div class="">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <h3 class="card-title">List Transaksi Jasa</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" >
                 <table class="table table-head-fixed text-nowrap">
-                  <!-- <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>User</th>
-                      <th>Status</th>
-                      <th>Date</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead> -->
                   <tbody>
-                    <!-- <tr>
-                      <td>982</td>
-                      <td>Rocky Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr> -->
                     <?php $no=1; foreach ($activities as $act) : ?>
                       <tr>
-                        <td class="d-flex flex-column">
-                          <p><?= $act->constrain ?></p>
-                          <p><?= $act->created_at ?></p>
+                        <td class="col">
+                          <div class="d-flex flex-column">
+                            <p><?= $act->constrain ?></p>
+                            <p><?= $act->created_at ?></p>
+                          </div>
                         </td>
                         <td class="align-middle"><?= $act->status ?></td>
                         <td class="align-middle">
                             <?= anchor('tech/activity/detail/'.$act->activity_id, 'Detail', array('class' => 'btn btn-primary btn-sm'))?>
-                            <?= anchor('user/activity/detail/'.$act->activity_id, 'Ambil', array('class' => 'btn btn-primary btn-sm'))?>
+                            <?= anchor('user/activity/detail/'.$act->activity_id, 'Ambil', array('class' => 'btn btn-success btn-sm'))?>
                         </td>
                       </tr>
                     <?php  endforeach ?>
