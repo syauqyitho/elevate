@@ -53,6 +53,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('admin/constrain_category/index') ?>" class="nav-link">
+              <i class="nav-icon fas fa-toolbox"></i>
+              <p>
+                Kategori Kendala
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
