@@ -43,4 +43,9 @@ class Model_activity extends CI_Model {
 
         return $this->db->query($query);
     } 
+    
+    public function delete($id) {
+        $this->db->where('activity_id', $id);
+        $this->db->delete('activity');
+    }
 }
