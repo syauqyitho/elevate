@@ -22,6 +22,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('admin/company_branch/index') ?>" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>
+               Cabang
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('admin/group_of_entity/index') ?>" class="nav-link">
               <i class="nav-icon fas fa-sitemap"></i>
               <p>
