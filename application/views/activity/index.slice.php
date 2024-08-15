@@ -35,7 +35,8 @@
                         </td>
                         <td class="align-middle"><?= $act->status ?></td>
                         <td class="align-middle">
-                            <?= anchor('user/activity/detail/'.$act->activity_id, 'Detail', array('class' => 'btn btn-primary btn-sm'))?>
+                            <!-- <?= anchor('user/activity/detail/'.$act->activity_id, 'Detail', array('class' => 'btn btn-primary btn-sm'))?> -->
+                            <a href="<?= base_url('user/activity/detail/'.$act->activity_id) ?>" class="btn btn-sm btn-primary">Detail</a>
                         </td>
                       </tr>
                     <?php  endforeach ?>
