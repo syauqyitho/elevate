@@ -6,7 +6,6 @@ class Activity extends CI_Controller {
         parent::__construct();
         $this->load->library('slice');
         $this->load->model('model_activity');
-        $this->load->model('model_activity_detail');
         $this->load->model('model_activity_status');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
@@ -72,18 +71,6 @@ class Activity extends CI_Controller {
         }
     }
     
-    public function detail() {
-        $id = $this->uri->segment(4);
-        $data['activities'] = $this->model_activity_detail->detail($id)->row_array();
-        // $data['activities'] = $this->model_activity_category->index()->result();
-        // $data['constrains'] = $this->model_constrain_category->index()->result();
-        // $data['activity'] = $this->model_activity->detail($id)->row_array();
-        // print_r($data);
-        // exit;
-
-        $this->slice->view('admin.activity.detail', $data);
-    }
-
     public function edit() {
         if (isset($_POST['submit'])) {
             $id = $this->uri->segment(4);
