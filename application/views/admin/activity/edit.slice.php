@@ -14,7 +14,7 @@
                   <label for="user_name">Nama Pengorder</label>
                   <select class="custom-select rounded-0" id="user_name" name="user_name">
                     <?php foreach($users as $usr) : ?>
-                    <option value="<?= $usr->user_id ?>" <?= $activities['user_name'] == $usr->name ? 'selected' : '' ?> ><?= $usr->name ?></option>
+                    <option value="<?= $usr->user_id ?>" <?= $activities['user_name'] == $usr->user_id ? 'selected' : '' ?> ><?= $usr->name ?></option>
                     <?php endforeach ?>
                   </select>
                 </div>
