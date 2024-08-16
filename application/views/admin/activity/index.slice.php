@@ -24,23 +24,7 @@
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" >
                 <table class="table table-head-fixed text-nowrap">
-                  <!-- <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>User</th>
-                      <th>Status</th>
-                      <th>Date</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead> -->
                   <tbody>
-                    <!-- <tr>
-                      <td>982</td>
-                      <td>Rocky Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr> -->
                     <?php $no=1; foreach ($activities as $act) : ?>
                       <tr>
                         <td class="col">
@@ -51,7 +35,7 @@
                         </td>
                         <td class="align-middle"><?= $act->status ?></td>
                         <td class="align-middle">
-                            <?= anchor('admin/activity/detail/'.$act->activity_id, 'Detail', array('class' => 'btn btn-primary btn-sm'))?>
+                            <a href="<?= base_url('admin/activity/edit/'.$act->activity_id) ?>" class="btn btn-sm btn-warning">Detail</a>
                             <a href="<?= base_url('admin/activity/delete/'.$act->activity_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                         </td>
                       </tr>

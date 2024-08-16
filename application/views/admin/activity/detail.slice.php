@@ -21,7 +21,6 @@
               <div class="card-header">
                 <h3 class="card-title">Detail Transaksi Jasa</h3>
               </div>
-
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="form-group">
