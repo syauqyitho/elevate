@@ -34,25 +34,6 @@ class Model_activity extends CI_Model {
         $this->db->where('activity_detail_id', $ad_id);
         $this->db->update('activity_detail', $activity_detail);
         $this->db->trans_complete();
-
-       // to prevent collision data when multiple data inserted at the same time
-    //    $this->db->trans_start();
-    //    $a_id = array('activity_id' => $id);
-    //    $activity_detail_id = $this->db->get_where('activity_detail', $a_id)->row_array();
-    //    $ad_id = $activity_detail_id['activity_detail_id'];
-    //    $user_id = $activity['user_id'];
-    //    $u_id = array('user_id' => $user_id);
-    //    $company_branch_id = $this->db->get_where('user', $u_id)->row_array();
-    //    $cb_id = $company_branch_id['company_branch_id'];
-    //    $this->db->where('activity_id', $id);
-    //    $this->db->update('activity', $activity);
-    //    $this->db->where('activity_detail_id', $ad_id);
-    //    $this->db->update('activity_detail', $activity_detail);
-    //    $this->db->where('user_id', $user_id);
-    //    $this->db->update('user', $user);
-    //    $this->db->where('company_branch_id', $cb_id);
-    //    $this->db->update('company_branch', $company_branch);
-    //    $this->db->trans_complete();
     }
     
     public function detail($id) {

@@ -50,7 +50,7 @@
                     </div> -->
                   </div>
                 </div>
-                <button class="btn btn-primary" type="submit" name="submit">Simpan</button>
+                <button class="btn btn-success" type="submit" name="submit">Simpan</button>
               </form>
               </div>
               <!-- /.card-body -->
