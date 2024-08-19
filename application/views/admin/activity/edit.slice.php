@@ -3,7 +3,11 @@
 @section('title', 'Edit Transaksi Jasa')
 
 @section('content')
+          <div class="col">
             <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Transaksi Jasa</h3>
+              </div>
               <div class="card-body">
                 <?= form_open_multipart('admin/activity/edit/'.$activities['activity_id']) ?>
                 <!-- <div class="form-group">
@@ -124,4 +128,5 @@
               </div>
               <!-- /.card-body -->
             </div>
+          </div>
 @endsection

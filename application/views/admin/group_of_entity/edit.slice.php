@@ -6,9 +6,9 @@
           <div class="col">
             <!-- general form elements -->
             <div class="card card-primary">
-              <!-- <div class="card-header">
-                <h3 class="card-title">Tambah Badan Usaha</h3>
-              </div> -->
+              <div class="card-header">
+                <h3 class="card-title">kelompok Badan Usaha</h3>
+              </div>
               <!-- /.card-header -->
               <!-- form start -->
               <?= form_open('admin/group_of_entity/edit/'.$group_of_entities['group_of_entity_id']) ?>
@@ -41,7 +41,8 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <a href="<?= base_url('admin/group_of_entity/') ?>" class="btn btn-primary">Kembali</a>
+                  <button type="submit" class="btn btn-success" name="submit">Submit</button>
                 </div>
               </form>
             </div>

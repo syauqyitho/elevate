@@ -4,10 +4,10 @@
 @section('content')
         <div class="row">
           <div class="col-12">
-            <div class="card">
+            <div class="card card-primary">
               <div class="card-header">
                 <!-- <h3 class="card-title"></h3> -->
-                <a href="<?= base_url('admin/activity/add') ?>" class="card-tools btn btn-primary"><i class="fas fa-plus mx-1"></i>Transaksi Jasa</a>
+                <a href="<?= base_url('admin/activity/add') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Transaksi Jasa</a>
 
                 <!-- <div class="">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -35,7 +35,7 @@
                         </td>
                         <td class="align-middle"><?= $act->status ?></td>
                         <td class="align-middle">
-                            <a href="<?= base_url('admin/activity/edit/'.$act->activity_id) ?>" class="btn btn-sm btn-warning">Detail</a>
+                            <a href="<?= base_url('admin/activity/edit/'.$act->activity_id) ?>" class="btn btn-sm btn-primary">Detail</a>
                             <a href="<?= base_url('admin/activity/delete/'.$act->activity_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                         </td>
                       </tr>

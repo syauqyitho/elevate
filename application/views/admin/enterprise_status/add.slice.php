@@ -1,14 +1,14 @@
 @extends('layouts.app.admin')
 
-@section('title', 'Tambah Badan Usaha')
+@section('title', 'Tambah Status Badan Usaha')
 
 @section('content')
           <div class="col">
             <!-- general form elements -->
             <div class="card card-primary">
-              <!-- <div class="card-header">
-                <h3 class="card-title">Tambah Badan Usaha</h3>
-              </div> -->
+              <div class="card-header">
+                <h3 class="card-title">Status Badan Usaha</h3>
+              </div>
               <!-- /.card-header -->
               <!-- form start -->
               <?= form_open('admin/enterprise_status/add') ?>
@@ -21,7 +21,8 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <a href="<?= base_url('admin/enterprise_status/') ?>" class="btn btn-primary">Kembali</a>
+                  <button type="submit" class="btn btn-success" name="submit">Submit</button>
                 </div>
               </form>
             </div>

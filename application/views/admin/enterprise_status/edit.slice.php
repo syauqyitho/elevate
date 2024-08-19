@@ -6,6 +6,9 @@
           <div class="col">
             <!-- general form elements -->
             <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Status Badan Usaha</h3>
+              </div>
               <?= form_open('admin/enterprise_status/edit/'.$enterprise_status['enterprise_status_id']) ?>
                 <div class="card-body">
                   <div class="form-group">
@@ -15,7 +18,8 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <a href="<?= base_url('admin/enterprise_status/') ?>" class="btn btn-primary">Kembali</a>
+                  <button type="submit" class="btn btn-success" name="submit">Submit</button>
                 </div>
               </form>
             </div>

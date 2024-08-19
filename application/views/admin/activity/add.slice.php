@@ -1,8 +1,13 @@
 @extends('layouts.app.admin')
-<!-- @section('title', 'Tambah Transaksi Jasa') -->
+
+@section('title', 'Tambah Transaksi Jasa')
 
 @section('content')
+          <div class="col">
             <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Transaksi Jasa</h3>
+              </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <?= form_open_multipart('admin/activity/add') ?>
@@ -85,4 +90,5 @@
               </div>
               <!-- /.card-body -->
             </div>
+          </div>
 @endsection

@@ -6,9 +6,9 @@
           <div class="col">
             <!-- general form elements -->
             <div class="card card-primary">
-              <!-- <div class="card-header">
-                <h3 class="card-title">Tambah Badan Usaha</h3>
-              </div> -->
+              <div class="card-header">
+                <h3 class="card-title">Badan Usaha</h3>
+              </div>
               <!-- /.card-header -->
               <!-- form start -->
               <?= form_open('admin/enterprise/add') ?>
@@ -29,7 +29,8 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <a href="<?= base_url('admin/enterprise/') ?>" class="btn btn-primary">Kembali</a>
+                  <button type="submit" class="btn btn-success" name="submit">Submit</button>
                 </div>
               </form>
             </div>

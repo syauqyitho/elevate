@@ -6,9 +6,9 @@
           <div class="col">
             <!-- general form elements -->
             <div class="card card-primary">
-              <!-- <div class="card-header">
-                <h3 class="card-title">Tambah Badan Usaha</h3>
-              </div> -->
+              <div class="card-header">
+                <h3 class="card-title">Kategori Jasa</h3>
+              </div>
               <!-- /.card-header -->
               <!-- form start -->
               <?= form_open('admin/activity_category/add') ?>

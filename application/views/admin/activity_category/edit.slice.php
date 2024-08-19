@@ -6,6 +6,9 @@
           <div class="col">
             <!-- general form elements -->
             <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Kategori Jasa</h3>
+              </div>
               <?= form_open('admin/activity_category/edit/'.$activity_categories['activity_category_id']) ?>
                 <div class="card-body">
                   <div class="form-group">
@@ -15,7 +18,8 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <a href="<?= base_url('admin/activity_category/index/') ?>" class="btn btn-primary">Kembali</a>
+                  <button type="submit" class="btn btn-success" name="submit">Submit</button>
                 </div>
               </form>
             </div>

@@ -5,10 +5,10 @@
 @section('content')
         <div class="row">
           <div class="col-12">
-            <div class="card">
+            <div class="card card-primary">
               <div class="card-header">
                 <!-- <h3 class="card-title"></h3> -->
-                <a href="<?= base_url('admin/enterprise_status/add') ?>" class="card-tools btn btn-primary"><i class="fas fa-plus mx-1"></i>Status Badan Usaha</a>
+                <a href="<?= base_url('admin/enterprise_status/add') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Status Badan Usaha</a>
 
                 <!-- <div class="">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -32,8 +32,8 @@
                           <p><?= $ent->enterprise_status_name ?></p>
                         </td>
                         <td class="align-middle">
-                            <?= anchor('admin/enterprise_status/edit/'.$ent->enterprise_status_id, 'Edit', array('class' => 'btn btn-warning btn-sm'))?>
-                            <?= anchor('admin/enterprise_status/delete/'.$ent->enterprise_status_id, 'Hapus', array('class' => 'btn btn-danger btn-sm'))?>
+                            <a href="<?= base_url('admin/enterprise_status/edit/'.$ent->enterprise_status_id) ?>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="<?= base_url('admin/enterprise_status/delete/'.$ent->enterprise_status_id) ?>" class="btn btn-sm btn-danger">Edit</a>
                         </td>
                       </tr>
                     <?php  endforeach ?>

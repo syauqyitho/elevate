@@ -5,10 +5,10 @@
 @section('content')
         <div class="row">
           <div class="col-12">
-            <div class="card">
+            <div class="card card-primary">
               <div class="card-header">
                 <!-- <h3 class="card-title"></h3> -->
-                <a href="<?= base_url('admin/constrain_category/add') ?>" class="card-tools btn btn-primary"><i class="fas fa-plus mx-1"></i>kategori Kendala</a>
+                <a href="<?= base_url('admin/constrain_category/add') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>kategori Kendala</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" >
@@ -20,8 +20,8 @@
                           <p><?= $cc->constrain_category_name ?></p>
                         </td>
                         <td class="align-middle">
-                            <?= anchor('admin/constrain_category/edit/'.$cc->constrain_category_id, 'Edit', array('class' => 'btn btn-warning btn-sm'))?>
-                            <?= anchor('admin/constrain_category/delete/'.$cc->constrain_category_id, 'Hapus', array('class' => 'btn btn-danger btn-sm'))?>
+                            <a href="<?= base_url('admin/constrain_category/edit/'.$cc->constrain_category_id) ?>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="<?= base_url('admin/constrain_category/delete/'.$cc->constrain_category_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                         </td>
                       </tr>
                     <?php  endforeach ?>

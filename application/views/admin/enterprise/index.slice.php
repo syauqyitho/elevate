@@ -5,10 +5,10 @@
 @section('content')
         <div class="row">
           <div class="col-12">
-            <div class="card">
+            <div class="card card-primary">
               <div class="card-header">
                 <!-- <h3 class="card-title"></h3> -->
-                <a href="<?= base_url('admin/enterprise/add') ?>" class="card-tools btn btn-primary"><i class="fas fa-plus mx-1"></i>Badan Usaha</a>
+                <a href="<?= base_url('admin/enterprise/add') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Badan Usaha</a>
 
                 <!-- <div class="">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -36,7 +36,7 @@
                         </td>
                         <td class="align-middle">
                           <div>
-                            <a href="<?= base_url('admin/enterprise/edit/'.$ent->enterprise_id) ?>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="<?= base_url('admin/enterprise/edit/'.$ent->enterprise_id) ?>" class="btn btn-sm btn-primary">Edit</a>
                             <a href="<?= base_url('admin/enterprise/delete/'.$ent->enterprise_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                           </div>
                         </td>

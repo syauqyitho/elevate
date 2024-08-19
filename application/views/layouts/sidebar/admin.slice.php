@@ -22,6 +22,22 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('admin/constrain_category/index') ?>" class="nav-link">
+              <i class="nav-icon fas fa-toolbox"></i>
+              <p>
+                Kategori Kendala
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('admin/activity_category/index') ?>" class="nav-link">
+              <i class="nav-icon fas fa-bullseye"></i>
+              <p>
+                Kategori Jasa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= base_url('admin/company_branch/index') ?>" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
@@ -50,22 +66,6 @@
               <i class="nav-icon fas fa-stream"></i>
               <p>
                 Status Badan Usaha
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('admin/constrain_category/index') ?>" class="nav-link">
-              <i class="nav-icon fas fa-toolbox"></i>
-              <p>
-                Kategori Kendala
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('admin/activity_category/index') ?>" class="nav-link">
-              <i class="nav-icon fas fa-bullseye"></i>
-              <p>
-                Kategori Jasa
               </p>
             </a>
           </li>
