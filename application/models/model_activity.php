@@ -42,11 +42,53 @@ class Model_activity extends CI_Model {
         return $this->db->get_where('activity', $params);
     }
     
-    public function delete($id) {
-        $this->db->where('activity_id', $id);
-        $this->db->delete('activity');
-    }
+    // public function admin_index() {
+    //     $query = "SELECT 
+    //             a.activity_id,
+    //             u.name AS user_name,
+    //             st.activity_status_name AS status,
+    //             a.img
+    //         FROM
+    //             activity a
+    //             LEFT JOIN activity_status st ON st.activity_status_id = ac.activity_status_i
+    //             LEFT JOIN user u ON a.user_id = u.user_id";
 
+    //     return $this->db->query($query);
+    // }
+    
+    // public function admin_edit($id) {
+    //     $query = "SELECT
+    //                 ad.activity_id,
+    //                 ad.activity_detail_id,
+    //                 ad.user_id AS tech_name,
+    //                 ad.constrain_description,
+    //                 ad.action_description,
+    //                 ad.level,
+    //                 ad.urgency,
+    //                 ad.analyze,
+    //                 ad.troubleshooting,
+    //                 ad.img AS tech_img,
+    //                 ad.created_at,
+    //                 ad.updated_at,
+    //                 a.activity_category_id,
+    //                 a.constrain_category_id,
+    //                 a.constrain,
+    //                 a.user_id AS user_name,
+    //                 a.activity_status_id,
+    //                 a.img AS user_img,
+    //                 u.phone_number,
+    //                 u.department,
+    //                 cb.address
+    //             FROM
+    //                 activity_detail ad
+    //                 LEFT JOIN activity a ON ad.activity_id = a.activity_id
+    //                 LEFT JOIN user u ON a.user_id = u.user_id
+    //                 LEFT JOIN company_branch cb ON u.company_branch_id = cb.company_branch_id
+    //                 WHERE a.activity_id=".$id;
+        
+    //     return $this->db->query($query);
+    // }
+    
     public function tech_index() {
         $query = "SELECT
                     ad.activity_id,

@@ -148,7 +148,7 @@ class Activity extends CI_Controller {
             return $this->slice->view('admin.activity.edit', $data);
         }
     }
-    
+
     public function delete() {
         $id = $this->uri->segment(4);
         $this->model_activity->delete($id);
