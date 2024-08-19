@@ -50,6 +50,7 @@
                     </div> -->
                   </div>
                 </div>
+                <a href="<?= base_url('admin/activity/') ?>" class="btn btn-primary">Kembali</a>
                 <button class="btn btn-success" type="submit" name="submit">Simpan</button>
               </form>
               </div>

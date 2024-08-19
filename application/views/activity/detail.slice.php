@@ -83,7 +83,7 @@
                     </div>
                   </div>
                 </div>
-                <a href="<?= base_url('user/activity/') ?>" class="btn btn-danger">Kembali</a>
+                <a href="<?= base_url('user/activity/') ?>" class="btn btn-primary">Kembali</a>
                 <button class="btn btn-success" type="submit" name="submit">Simpan</button>
               </form>
               </div>
