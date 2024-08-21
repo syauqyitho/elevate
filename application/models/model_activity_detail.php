@@ -1,39 +1,14 @@
 <?php
 
 class Model_activity_detail extends CI_Model {
-    // public function detail($id) {
-    //     $params = array('activity_id' => $id);
-        
-    //     return $this->db->get_where('activity_detail', $params);
-    // }
-    public function detail($id) {
-        $query = "SELECT
-                    ad.activity_detail_id,
-                    ad.activity_id,
-                    ad.constrain_description,
-                    ad.action_description,
-                    ad.img AS tech_img,
-                    ad.level,
-                    ad.urgency,
-                    ad.analyze,
-                    ad.troubleshooting,
-                    ad.created_at,
-                    ad.updated_at,
-                    a.constrain,
-                    a.activity_category_id,
-                    a.constrain_category_id,
-                    a.img AS user_img,
-                    ast.activity_status_name,
-                    u.name AS user_name,
-                    us.name AS tech_name
-                FROM
-                    activity_detail ad
-                    LEFT JOIN activity a ON ad.activity_id = a.activity_id
-                    LEFT JOIN activity_status ast ON a.activity_status_id = ast.activity_status_id
-                    LEFT JOIN user u ON a.user_id = u.user_id
-                    LEFT JOIN user us ON ad.user_id = us.user_id
-                WHERE ad.activity_id=".$id;
 
-        return $this->db->query($query);
+    public function detail($id) {
+        $params = array('activity_detail_id' => $id);
+        return $this->db->get_where('activity_detail', $params);
+    }
+
+    public function list_detail($id) {
+        $this->db->where('activity_id', $id);
+        return $this->db->get('activity_detail');
     }
 }

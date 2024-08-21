@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                   <label for="constrain_category">Kategori Kendala</label>
-                  <select class="custom-select rounded-0" id="constrain_category" nama="constrain_category">
+                  <select class="custom-select rounded-0" id="constrain_category" name="constrain_category">
                     <?php foreach($constrains as $cons) : ?>
                     <option value="<?= $cons->constrain_category_id ?>"><?= $cons->constrain_category_name ?></option>
                     <?php endforeach ?>
@@ -33,10 +33,6 @@
                 <div class="form-group">
                   <label for="constrain_description">Deskripsi Kendala</label>
                   <textarea class="form-control" rows="3" id="constrain_description" name="constrain_description" placeholder="Enter ..."></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="action_description">Deskripsi Tindakan</label>
-                  <textarea class="form-control" rows="3" id="action_description" name="action_description" placeholder="Enter ..."></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">Lampiran Foto</label>

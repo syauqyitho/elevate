@@ -4,42 +4,58 @@ class Model_activity extends CI_Model {
     public function index() {
         $query = "SELECT 
                     a.activity_id,
-                    ad.created_at,
+                    a.created_at,
                     a.constrain,
                     st.activity_status_name AS status 
                 FROM
                     activity a
-                    LEFT JOIN activity_detail ad ON ad.activity_id = a.activity_id
                     LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id";
 
         return $this->db->query($query);
     } 
     
-    public function add($activity, $activity_detail) {
-       // to prevent collision data when multiple data inserted at the same time
-       $this->db->trans_start();
-       $this->db->insert('activity', $activity);
-       $activity_detail['activity_id'] = $this->db->insert_id();
-       $this->db->insert('activity_detail', $activity_detail);
-       $this->db->trans_complete();
+    public function add($data) {
+        // to prevent collision data when multiple data inserted at the same time
+        // $this->db->trans_start();
+        // $this->db->insert('activity', $activity);
+        // $activity_detail['activity_id'] = $this->db->insert_id();
+        // $this->db->insert('activity_detail', $activity_detail);
+        // $this->db->trans_complete();
+        $this->db->insert('activity', $data);
     }
     
-    public function update($id, $activity, $activity_detail) {
-        $this->db->trans_start();
-        $a_id = array('activity_id' => $id);
-        $activity_detail_id = $this->db->get_where('activity_detail', $a_id)->row_array();
-        $ad_id = $activity_detail_id['activity_detail_id'];
+    public function update($id, $data) {
+        // $this->db->trans_start();
+        // $a_id = array('activity_id' => $id);
+        // $activity_detail_id = $this->db->get_where('activity_detail', $a_id)->row_array();
+        // $ad_id = $activity_detail_id['activity_detail_id'];
+        // $this->db->where('activity_id', $id);
+        // $this->db->update('activity', $activity);
+        // $this->db->where('activity_detail_id', $ad_id);
+        // $this->db->update('activity_detail', $activity_detail);
+        // $this->db->trans_complete();
         $this->db->where('activity_id', $id);
-        $this->db->update('activity', $activity);
-        $this->db->where('activity_detail_id', $ad_id);
-        $this->db->update('activity_detail', $activity_detail);
-        $this->db->trans_complete();
+        $this->db->update('activity', $data);
     }
     
     public function detail($id) {
-        $params = array('activity_id' => $id);
-        
-        return $this->db->get_where('activity', $params);
+        $query = "SELECT
+                    a.activity_id,
+                    a.constrain,
+                    a.activity_category_id,
+                    a.constrain_category_id,
+                    a.constrain_description,
+                    a.created_at,
+                    a.img AS user_img,
+                    ast.activity_status_name,
+                    u.NAME AS user_name
+                FROM
+                    activity a
+                    LEFT JOIN activity_status ast ON a.activity_status_id = ast.activity_status_id
+                    LEFT JOIN USER u ON a.user_id = u.user_id
+                WHERE a.activity_id=".$id;
+
+        return $this->db->query($query);
     }
     
     // public function admin_index() {
