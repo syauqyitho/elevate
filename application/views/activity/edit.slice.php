@@ -17,7 +17,7 @@
                       <tr>
                         <td class="col">
                           <div class="d-flex flex-column">
-                            <p><?= $ad->analyze ?></p>
+                            <p><?= $ad->name ?></p>
                             <p><?= $ad->created_at ?></p>
                           </div>
                         </td>
@@ -48,6 +48,14 @@
                 <div class="form-group">
                   <label for="user_name">Nama Pangorder</label>
                   <input type="text" class="form-control rounded-0" id="user_name" placeholder="Nama Pengorder" value="<?= $activities['user_name'] ?>" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select class="custom-select rounded-0" id="status" disabled>
+                    <?php foreach($activity_status as $ast) : ?>
+                    <option value="<?= $ast->activity_status_id ?>" <?= $activities['activity_status_id'] == $ast->activity_status_id ? 'selected' : '' ?> ><?= $ast->activity_status_name ?></option>
+                    <?php endforeach ?>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="activity_category">Kategori Jasa</label>

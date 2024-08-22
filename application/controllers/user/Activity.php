@@ -6,6 +6,7 @@ class Activity extends CI_Controller {
         parent::__construct();
         $this->load->library('slice');
         $this->load->model('model_activity');
+        $this->load->model('model_activity_status');
         $this->load->model('model_activity_detail');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
@@ -142,6 +143,7 @@ class Activity extends CI_Controller {
             $data['activity_details'] = $this->model_activity_detail->list_detail($id)->result();
             $data['activity_categories'] = $this->model_activity_category->index()->result();
             $data['constrain_categories'] = $this->model_constrain_category->index()->result();
+            $data['activity_status'] = $this->model_activity_status->index()->result();
             $this->slice->view('activity.edit', $data);
         }
     }
