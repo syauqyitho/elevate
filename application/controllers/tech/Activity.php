@@ -24,12 +24,19 @@ class Activity extends CI_Controller {
     }
     
     public function take() {
-       $id = $this->uri->segment(4); 
-       $data = array(
+       $id = $this->uri->segment(4);
+       $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
+       $created_at = $dt->format("Y-m-d_H:i:s");
+       $activities = array(
            'activity_status_id' => 2
        );
        
-       $this->model_activity->tech_take($id, $data);
+       $activity_details = array(
+           'user_id' => 2,
+           'created_at' => $created_at
+       );
+       
+       $this->model_activity->tech_take($id, $activities, $activity_details);
        redirect('tech/activity/history');
     }
     
@@ -75,7 +82,8 @@ class Activity extends CI_Controller {
             redirect('tech/activity/index');
         } else {
             $id = $this->uri->segment(4);
-            $data['activities'] = $this->model_activity->tech_detail($id)->row_array();
+            $data['activities'] = $this->model_activity->detail($id)->row_array();
+            $data['activity_details'] = $this->model_activity_detail->list_detail($id)->result();
             $data['activity_categories'] = $this->model_activity_category->index()->result();
             $data['constrain_categories'] = $this->model_constrain_category->index()->result();
             $data['activity_status'] = $this->model_activity_status->index()->result();

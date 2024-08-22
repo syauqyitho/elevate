@@ -47,7 +47,7 @@ class Model_activity extends CI_Model {
                     a.constrain_description,
                     a.created_at,
                     a.img AS user_img,
-                    ast.activity_status_name,
+                    a.activity_status_id,
                     u.NAME AS user_name
                 FROM
                     activity a
@@ -107,13 +107,12 @@ class Model_activity extends CI_Model {
     
     public function tech_index() {
         $query = "SELECT
-                    ad.activity_id,
-                    ad.created_at,
+                    a.activity_id,
+                    a.created_at,
                     a.constrain,
                     st.activity_status_name AS status 
                 FROM
-                    activity_detail ad
-                    LEFT JOIN activity a ON ad.activity_id = a.activity_id
+                    activity a
                     LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
                 WHERE a.activity_status_id = 1";
 
@@ -122,29 +121,32 @@ class Model_activity extends CI_Model {
 
     public function tech_history() {
         $query = "SELECT
-                    ad.activity_id,
-                    ad.created_at,
+                    a.activity_id,
+                    a.created_at,
                     a.constrain,
                     st.activity_status_name AS status 
                 FROM
-                    activity_detail ad
-                    LEFT JOIN activity a ON ad.activity_id = a.activity_id
+                    activity a
                     LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
-                WHERE NOT a.activity_status_id = 1";
+                WHERE NOT a.activity_status_id = 1
+                ORDER BY a.activity_id";
 
         return $this->db->query($query);
     } 
     
-    public function tech_take($id, $data) {
+    public function tech_take($id, $activities, $activity_details) {
+        $this->db->trans_start();
         $this->db->where('activity_id', $id);
-        $this->db->update('activity', $data);
+        $this->db->update('activity', $activities);
+        $activity_details['activity_id'] = $id;
+        $this->db->insert('activity_detail', $activity_details);
+        $this->db->trans_complete();
     }
      
     public function tech_detail($id) {
         $query = "SELECT
                     ad.activity_id,
                     ad.user_id AS tech_name,
-                    ad.constrain_description,
                     ad.action_description,
                     ad.level,
                     ad.urgency,
@@ -152,14 +154,15 @@ class Model_activity extends CI_Model {
                     ad.troubleshooting,
                     ad.img AS tech_img,
                     ad.reason,
-                    ad.created_at,
                     ad.updated_at,
                     a.activity_category_id,
                     a.constrain_category_id,
                     a.constrain,
+                    a.constrain_description,
                     a.user_id AS user_name,
                     a.activity_status_id,
                     a.img AS user_img,
+                    a.created_at,
                     u.phone_number,
                     u.department,
                     cb.address
