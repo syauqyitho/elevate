@@ -21,18 +21,21 @@ class Model_activity extends CI_Model {
     public function detail($id) {
         $query = "SELECT
                     a.activity_id,
-                    a.constrain,
-                    a.activity_category_id,
-                    a.constrain_category_id,
-                    a.constrain_description,
-                    a.created_at,
-                    a.img AS user_img,
+                    a.user_id,
                     a.activity_status_id,
-                    u.NAME AS user_name
+                    a.constrain_category_id,
+                    a.activity_category_id,
+                    a.constrain,
+                    a.constrain_description,
+                    a.img,
+                    a.created_at,
+                    u.department,
+                    cb.branch_name,
+                    cb.address
                 FROM
                     activity a
-                    LEFT JOIN activity_status ast ON a.activity_status_id = ast.activity_status_id
-                    LEFT JOIN USER u ON a.user_id = u.user_id
+                    LEFT JOIN user u ON a.user_id = u.user_id
+                    LEFT JOIN company_branch cb ON u.company_branch_id = cb.company_branch_id
                 WHERE a.activity_id=".$id;
 
         return $this->db->query($query);

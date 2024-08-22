@@ -13,7 +13,7 @@
                 <?= form_open_multipart('admin/activity/add') ?>
                 <div class="form-group">
                   <label for="name">Nama Pengorder</label>
-                  <select class="custom-select rounded-0" id="name" name="user_id">
+                  <select class="custom-select rounded-0" id="name" name="name">
                     <?php foreach($users as $usr) : ?>
                     <option value="<?= $usr->user_id ?>"><?= $usr->name ?></option>
                     <?php endforeach ?>

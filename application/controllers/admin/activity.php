@@ -43,7 +43,7 @@ class Activity extends CI_Controller {
                     'activity_status_id' => 1,
                     'activity_category_id' => $this->input->post('activity_category'),
                     'constrain_category_id' => $this->input->post('constrain_category'),
-                    'user_id' => $this->input->post('user_name'),
+                    'user_id' => $this->input->post('name'),
                     'constrain' => $this->input->post('constrain'),
                     'constrain_description' => $this->input->post('constrain_description'),
                     'img' => $img['file_name'],
@@ -59,7 +59,7 @@ class Activity extends CI_Controller {
                     'activity_status_id' => 1,
                     'activity_category_id' => $this->input->post('activity_category'),
                     'constrain_category_id' => $this->input->post('constrain_category'),
-                    'user_id' => $this->input->post('user_name'),
+                    'user_id' => $this->input->post('name'),
                     'constrain' => $this->input->post('constrain'),
                     'constrain_description' => $this->input->post('constrain_description'),
                     'created_at' => $created_at
@@ -80,53 +80,55 @@ class Activity extends CI_Controller {
             return $this->slice->view('admin.activity.add', $data);
         }
     }
-    
+
     public function edit() {
         if (isset($_POST['submit'])) {
-            $id = $this->uri->segment(4);
             $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
-            $created_at = $dt->format("Y-m-d_H:i:s");
-            // configuration for file upload
+            $created_at = $dt->format('Y-m-d H:i:s');
             $this->upload->initialize(array(
                 'upload_path' => './uploads',
                 'allowed_types' => 'jpg|png|jpeg',
                 'file_name' => $dt->format('Y-m-d_His')
             ));
             
-            if ($_FILES['img']['name']) {
+            if ($_FILES['img']['name'] !== '') {
                 if (!$this->upload->do_upload('img')) {
                     $errors = $this->upload->display_errors();
                     var_dump($errors);
                     exit;
+                    
+                    redirect('admin/activity/index');
                 } else {
                     $img = $this->upload->data();
-                }
 
-                $activity = array(
-                    'activity_category_id' => $this->input->post('activity_category'),
-                    'constrain_category_id' => $this->input->post('constrain_category'),
-                    'constrain' => $this->input->post('constrain'), 
-                    'constrain_description' => $this->input->post('constrain_description'),
-                    'user_id' => $this->input->post("name"),
-                    'img' => $img['file_name']
-                );
-                
-                // var_dump($id, $activity, $activity_detail, $user, $company_branch);
-                // exit;
-                $this->model_activity->update($id, $activity);
-                redirect('admin/activity/index');
+                    $data = array(
+                        'activity_category_id' => $this->input->post('activity_category'),
+                        'constrain_category_id' => $this->input->post('constrain_category'),
+                        'constrain' => $this->input->post('constrain'),
+                        'constrain_description' => $this->input->post('constrain_description'),
+                        'user_id' => $this->input->post('name'),
+                        'img' => $img['file_name']
+                    );
+
+                    // var_dump($activity);
+                    // exit;
+                    $id = $this->uri->segment(4);
+                    $this->model_activity->update($id, $data);
+                    redirect('admin/activity/index');
+                }
             } else {
-                $activity = array(
+                $data = array(
                     'activity_category_id' => $this->input->post('activity_category'),
                     'constrain_category_id' => $this->input->post('constrain_category'),
-                    'constrain' => $this->input->post('constrain'), 
+                    'constrain' => $this->input->post('constrain'),
                     'constrain_description' => $this->input->post('constrain_description'),
-                    'user_id' => $this->input->post("name"),
+                    'user_id' => $this->input->post('name')
                 );
-                
-                // var_dump($id, $activity, $activity_detail, $user, $company_branch);
+
+                // var_dump($data);
                 // exit;
-                $this->model_activity->update($id, $activity);
+                $id = $this->uri->segment(4);
+                $this->model_activity->update($id, $data);
                 redirect('admin/activity/index');
             }
         } else {
@@ -137,13 +139,10 @@ class Activity extends CI_Controller {
             $data['constrain_categories'] = $this->model_constrain_category->index()->result();
             $data['activity_status'] = $this->model_activity_status->index()->result();
             $data['users'] = $this->model_user->index()->result();
-            // var_dump($data);
-            // exit;
-
-            return $this->slice->view('admin.activity.detail', $data);
+            $this->slice->view('admin.activity.edit', $data);
         }
     }
-
+    
     public function delete() {
         $id = $this->uri->segment(4);
         $this->model_activity->delete($id);

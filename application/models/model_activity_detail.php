@@ -10,9 +10,11 @@ class Model_activity_detail extends CI_Model {
     public function activity_detail($id) {
         $query = "SELECT
                     a.activity_id,
-                    a.activity_status_id
+                    a.activity_status_id,
+                    ad.user_id
                 FROM
                     activity a
+                    LEFT JOIN activity_detail ad ON a.activity_id = ad.activity_id
                 WHERE a.activity_id=".$id;
 
         return $this->db->query($query);
