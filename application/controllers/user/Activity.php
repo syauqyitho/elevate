@@ -10,6 +10,7 @@ class Activity extends CI_Controller {
         $this->load->model('model_activity_detail');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
+        $this->load->model('model_user'); 
     }
     
     public function index() {
@@ -98,8 +99,8 @@ class Activity extends CI_Controller {
                 'file_name' => $dt->format('Y-m-d_His')
             ));
             
-            if ($_FILES['user_img']['name'] !== '') {
-                if (!$this->upload->do_upload('user_img')) {
+            if ($_FILES['img']['name'] !== '') {
+                if (!$this->upload->do_upload('img')) {
                     $errors = $this->upload->display_errors();
                     var_dump($errors);
                     exit;
@@ -144,6 +145,7 @@ class Activity extends CI_Controller {
             $data['activity_categories'] = $this->model_activity_category->index()->result();
             $data['constrain_categories'] = $this->model_constrain_category->index()->result();
             $data['activity_status'] = $this->model_activity_status->index()->result();
+            $data['users'] = $this->model_user->index()->result();
             $this->slice->view('activity.edit', $data);
         }
     }

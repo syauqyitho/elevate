@@ -52,16 +52,32 @@
                   <input type="text" class="form-control rounded-0" id="created_at" placeholder="Waktu Keluhan" value="<?= $activities['created_at'] ?>" disabled>
                 </div>
                 <div class="form-group">
-                  <label for="user_name">Nama Pangorder</label>
-                  <input type="text" class="form-control rounded-0" id="user_name" placeholder="Nama Pengorder" value="<?= $activities['user_name'] ?>" disabled>
-                </div>
-                <div class="form-group">
                   <label for="status">Status</label>
                   <select class="custom-select rounded-0" id="status" name="status" disabled>
                     <?php foreach($activity_status as $ast) : ?>
                     <option value="<?= $ast->activity_status_id ?>" <?= $activities['activity_status_id'] == $ast->activity_status_id ? 'selected' : '' ?> ><?= $ast->activity_status_name ?></option>
                     <?php endforeach ?>
                   </select>
+                </div>
+                <div class="form-group">
+                  <label for="name">Nama Pengorder</label>
+                  <select class="custom-select rounded-0" id="name" name="name" disabled>
+                    <?php foreach($users as $usr) : ?>
+                    <option value="<?= $usr->user_id ?>" <?= $activities['user_id'] == $usr->user_id ? 'selected' : '' ?> ><?= $usr->name ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="branch_name">Cabang</label>
+                  <input type="text" class="form-control rounded-0" id="branch_name" placeholder="Cabang" value="<?= $activities['branch_name'] ?>" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="address">Alamat</label>
+                  <input type="text" class="form-control rounded-0" id="address" placeholder="Alamat" value="<?= $activities['address'] ?>" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="department">Departemen</label>
+                  <input type="text" class="form-control rounded-0" id="department" placeholder="Departemen" value="<?= $activities['department'] ?>" disabled>
                 </div>
                 <div class="form-group">
                   <label for="activity_category">Kategori Jasa</label>
@@ -91,11 +107,11 @@
                   <label for="exampleInputFile">Lampiran Foto</label>
                   <div class="row">
                     <div class="col">
-                      <img class="img-fluid" src="<?= base_url('uploads/').$activities['user_img'] ?>" alt="User Photo">
+                      <img class="img-fluid" src="<?= base_url('uploads/').$activities['img'] ?>" alt="User Photo">
                     </div>
                   </div>
                 </div>
-                <a href="<?= base_url('user/activity/') ?>" class="btn btn-primary">Kembali</a>
+                <a href="<?= base_url('tech/activity/history') ?>" class="btn btn-primary">Kembali</a>
               </div>
               <!-- /.card-body -->
             </div>

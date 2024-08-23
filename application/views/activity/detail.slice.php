@@ -8,7 +8,6 @@
                 <h3 class="card-title">Detail Transaksi Jasa</h3>
               </div>
               <div class="card-body">
-                <?= form_open_multipart('user/activity/edit/'.$activity_details['activity_id']) ?>
                 <div class="form-group">
                   <label for="name">Nama Teknisi</label>
                   <select class="custom-select rounded-0" id="name" name="name" disabled>
@@ -45,9 +44,7 @@
                     </div>
                   </div>
                 </div>
-                <a href="<?= base_url('user/activity/') ?>" class="btn btn-primary">Kembali</a>
-                <button class="btn btn-success" type="submit" name="submit">Simpan</button>
-              </form>
+                <a href="<?= base_url('user/activity/edit/'.$activity_details['activity_id']) ?>" class="btn btn-primary">Kembali</a>
               </div>
               <!-- /.card-body -->
             </div>
