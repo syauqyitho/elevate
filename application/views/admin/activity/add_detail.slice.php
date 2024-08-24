@@ -31,20 +31,20 @@
                   <textarea class="form-control" rows="3" id="analyze" name="analyze" placeholder="Enter ..."></textarea>
                 </div>
                 <div class="form-group">
+                  <label for="level">Level</label>
+                  <select class="custom-select rounded-0" id="level" name="level">
+                    <?php foreach($levels as $lvl) : ?>
+                    <option value="<?= $lvl->level_id ?>"><?= $lvl->level_name ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="action_description">Deskripsi Tindakan</label>
                   <textarea class="form-control" rows="3" id="action_description" name="action_description" placeholder="Enter ..."></textarea>
                 </div>
                 <div class="form-group">
                   <label for="troubleshooting">Troubleshooting</label>
                   <textarea class="form-control" rows="3" id="troubleshooting" name="troubleshooting" placeholder="Enter ..."></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="urgency">Urgency</label>
-                  <input type="text" class="form-control rounded-0" id="urgency" name="urgency" placeholder="Urgency">
-                </div>
-                <div class="form-group">
-                  <label for="level">level</label>
-                  <input type="text" class="form-control rounded-0" id="level" name="level" placeholder="level">
                 </div>
                 <div class="form-group">
                   <label for="reason">Alasan</label>

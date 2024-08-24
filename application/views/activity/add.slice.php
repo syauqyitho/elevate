@@ -27,6 +27,14 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <label for="urgency">Urgency</label>
+                  <select class="custom-select rounded-0" id="urgency" name="urgency">
+                    <?php foreach($urgencies as $urg) : ?>
+                    <option value="<?= $urg->urgency_id ?>"><?= $urg->urgency_name ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="constrain">Kendala</label>
                   <input type="text" class="form-control rounded-0" id="constrain" name="constrain" placeholder="Kendala">
                 </div>

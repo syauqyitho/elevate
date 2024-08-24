@@ -34,16 +34,16 @@
                   <textarea class="form-control" rows="3" id="troubleshooting" name="troubleshooting" placeholder="Enter ..." ><?= $activity_details['troubleshooting'] ?></textarea>
                 </div>
                 <div class="form-group">
+                  <label for="level">Level</label>
+                  <select class="custom-select rounded-0" id="level" name="level">
+                    <?php foreach($levels as $lvl) : ?>
+                    <option value="<?= $lvl->level_id ?>" <?= $activity_details['level_id'] == $lvl->level_id ? 'selected' : '' ?> ><?= $lvl->level_name ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="action_description">Deskripsi Tindakan</label>
                   <textarea class="form-control" rows="3" id="action_description" name="action_description" placeholder="Enter ..." ><?= $activity_details['action_description'] ?></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="level">Level</label>
-                  <input type="text" class="form-control rounded-0" id="level" name="level" value="<?= $activity_details['level'] ?>" placeholder="Level">
-                </div>
-                <div class="form-group">
-                  <label for="urgency">Urgency</label>
-                  <input type="text" class="form-control rounded-0" id="urgency" name="urgency" value="<?= $activity_details['urgency'] ?>" placeholder="Level">
                 </div>
                 <div class="form-group">
                   <label for="reason">Alasan</label>

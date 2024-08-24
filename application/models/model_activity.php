@@ -25,6 +25,7 @@ class Model_activity extends CI_Model {
                     a.activity_status_id,
                     a.constrain_category_id,
                     a.activity_category_id,
+                    a.urgency_id,
                     a.constrain,
                     a.constrain_description,
                     a.img,

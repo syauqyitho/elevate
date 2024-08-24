@@ -11,7 +11,8 @@ class Model_activity_detail extends CI_Model {
         $query = "SELECT
                     a.activity_id,
                     a.activity_status_id,
-                    ad.user_id
+                    ad.user_id,
+                    ad.level_id
                 FROM
                     activity a
                     LEFT JOIN activity_detail ad ON a.activity_id = ad.activity_id
@@ -23,11 +24,13 @@ class Model_activity_detail extends CI_Model {
     public function list_detail($id) {
         $query = "SELECT
                     ad.activity_detail_id,
+                    lvl.level_name,
                     ad.created_at,
                     u.name
                 FROM
                     activity_detail ad
                     LEFT JOIN user u ON ad.user_id = u.user_id
+                    LEFT JOIN level lvl ON ad.level_id = lvl.level_id
                 WHERE ad.activity_id=".$id;
         return $this->db->query($query);
     }
@@ -45,8 +48,7 @@ class Model_activity_detail extends CI_Model {
         $query = "SELECT
                     ad.activity_id,
                     ad.activity_detail_id,
-                    ad.level,
-                    ad.urgency,
+                    ad.level_id,
                     ad.analyze,
                     ad.troubleshooting,
                     ad.action_description,

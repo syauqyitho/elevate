@@ -5,12 +5,13 @@ class Activity_detail extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('slice');
+        $this->load->model('model_user'); 
+        $this->load->model('model_level'); 
         $this->load->model('model_activity');
         $this->load->model('model_activity_detail');
         $this->load->model('model_activity_status');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
-        $this->load->model('model_user'); 
     }
 
     public function add() {
@@ -41,8 +42,7 @@ class Activity_detail extends CI_Controller {
                 $activity_detail = array(
                     'user_id' => 2,
                     'action_description' => $this->input->post('action_description'),
-                    'level' => $this->input->post('level'),
-                    'urgency' => $this->input->post('urgency'),
+                    'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
                     'troubleshooting' => $this->input->post('troubleshooting'),
                     'reason' => $this->input->post('reason'),
@@ -63,8 +63,7 @@ class Activity_detail extends CI_Controller {
                 $activity_detail = array(
                     'user_id' => 2,
                     'action_description' => $this->input->post('action_description'),
-                    'level' => $this->input->post('level'),
-                    'urgency' => $this->input->post('urgency'),
+                    'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
                     'troubleshooting' => $this->input->post('troubleshooting'),
                     'reason' => $this->input->post('reason'),
@@ -80,6 +79,7 @@ class Activity_detail extends CI_Controller {
         } else {
             $id = $this->uri->segment(4);
             $data['activity_details'] = $this->model_activity_detail->activity_detail($id)->row_array();
+            $data['levels'] = $this->model_level->index()->result();
             $data['activity_status'] = $this->model_activity_status->index()->result();
             // var_dump($data);
             // exit;
@@ -114,8 +114,7 @@ class Activity_detail extends CI_Controller {
 
                 $activity_detail = array(
                     'action_description' => $this->input->post('action_description'),
-                    'level' => $this->input->post('level'),
-                    'urgency' => $this->input->post('urgency'),
+                    'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
                     'troubleshooting' => $this->input->post('troubleshooting'),
                     'reason' => $this->input->post('reason'),
@@ -135,8 +134,7 @@ class Activity_detail extends CI_Controller {
                 $activity_detail = array(
                     'user_id' => 2,
                     'action_description' => $this->input->post('action_description'),
-                    'level' => $this->input->post('level'),
-                    'urgency' => $this->input->post('urgency'),
+                    'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
                     'troubleshooting' => $this->input->post('troubleshooting'),
                     'reason' => $this->input->post('reason'),
@@ -151,8 +149,9 @@ class Activity_detail extends CI_Controller {
         } else {
             $id = $this->uri->segment(4);
             $data['activity_details'] = $this->model_activity_detail->activity_edit($id)->row_array();
-            $data['activity_status'] = $this->model_activity_status->index()->result();
             $data['users'] = $this->model_user->index()->result();
+            $data['levels'] = $this->model_level->index()->result();
+            $data['activity_status'] = $this->model_activity_status->index()->result();
             // var_dump($data);
             // exit;
 

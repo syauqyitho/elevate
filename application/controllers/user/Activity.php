@@ -5,12 +5,13 @@ class Activity extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('slice');
+        $this->load->model('model_user'); 
+        $this->load->model('model_urgency'); 
         $this->load->model('model_activity');
         $this->load->model('model_activity_status');
         $this->load->model('model_activity_detail');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
-        $this->load->model('model_user'); 
     }
     
     public function index() {
@@ -50,6 +51,7 @@ class Activity extends CI_Controller {
                     'user_id' => 1,
                     'activity_category_id' => $this->input->post('activity_category'),
                     'constrain_category_id' => $this->input->post('constrain_category'),
+                    'urgency_id' => $this->input->post('urgency'),
                     'constrain' => $this->input->post('constrain'),
                     'constrain_description' => $this->input->post('constrain_description'),
                     'img' => $img['file_name'],
@@ -66,6 +68,7 @@ class Activity extends CI_Controller {
                     'user_id' => 1,
                     'activity_category_id' => $this->input->post('activity_category'),
                     'constrain_category_id' => $this->input->post('constrain_category'),
+                    'urgency_id' => $this->input->post('urgency'),
                     'constrain' => $this->input->post('constrain'),
                     'constrain_description' => $this->input->post('constrain_description'),
                     'created_at' => $created_at
@@ -79,6 +82,7 @@ class Activity extends CI_Controller {
         } else {
             $data['activities'] = $this->model_activity_category->index()->result();
             $data['constrains'] = $this->model_constrain_category->index()->result();
+            $data['urgencies'] = $this->model_urgency->index()->result();
             $this->slice->view('activity.add', $data);
         }
     }
@@ -110,9 +114,9 @@ class Activity extends CI_Controller {
                     $img = $this->upload->data();
 
                     $data = array(
-                        // 'activity_status_id' => 1,
                         'activity_category_id' => $this->input->post('activity_category'),
                         'constrain_category_id' => $this->input->post('constrain_category'),
+                        'urgency_id' => $this->input->post('urgency'),
                         'constrain' => $this->input->post('constrain'),
                         'constrain_description' => $this->input->post('constrain_description'),
                         'img' => $img['file_name']
@@ -128,6 +132,7 @@ class Activity extends CI_Controller {
                 $data = array(
                     'activity_category_id' => $this->input->post('activity_category'),
                     'constrain_category_id' => $this->input->post('constrain_category'),
+                    'urgency_id' => $this->input->post('urgency'),
                     'constrain' => $this->input->post('constrain'),
                     'constrain_description' => $this->input->post('constrain_description'),
                 );
@@ -142,10 +147,11 @@ class Activity extends CI_Controller {
             $id = $this->uri->segment(4);
             $data['activities'] = $this->model_activity->detail($id)->row_array();
             $data['activity_details'] = $this->model_activity_detail->list_detail($id)->result();
+            $data['users'] = $this->model_user->index()->result();
+            $data['urgencies'] = $this->model_urgency->index()->result();
+            $data['activity_status'] = $this->model_activity_status->index()->result();
             $data['activity_categories'] = $this->model_activity_category->index()->result();
             $data['constrain_categories'] = $this->model_constrain_category->index()->result();
-            $data['activity_status'] = $this->model_activity_status->index()->result();
-            $data['users'] = $this->model_user->index()->result();
             $this->slice->view('activity.edit', $data);
         }
     }

@@ -5,12 +5,13 @@ class Activity extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('slice');
+        $this->load->model('model_user'); 
         $this->load->model('model_activity');
+        $this->load->model('model_urgency');
         $this->load->model('model_activity_detail');
         $this->load->model('model_activity_status');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
-        $this->load->model('model_user'); 
     }
     
     public function index() {
@@ -84,10 +85,11 @@ class Activity extends CI_Controller {
             $id = $this->uri->segment(4);
             $data['activities'] = $this->model_activity->detail($id)->row_array();
             $data['activity_details'] = $this->model_activity_detail->list_detail($id)->result();
+            $data['users'] = $this->model_user->index()->result();
+            $data['urgencies'] = $this->model_urgency->index()->result();
+            $data['activity_status'] = $this->model_activity_status->index()->result();
             $data['activity_categories'] = $this->model_activity_category->index()->result();
             $data['constrain_categories'] = $this->model_constrain_category->index()->result();
-            $data['activity_status'] = $this->model_activity_status->index()->result();
-            $data['users'] = $this->model_user->index()->result();
             // var_dump($data);
             // exit;
 

@@ -27,6 +27,7 @@
                             <p><?= $ad->created_at ?></p>
                           </div>
                         </td>
+                        <td class="align-middle"><?= $ad->level_name ?></td>
                         <td class="align-middle">
                             <a href="<?= base_url('tech/activity_detail/edit/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-primary">Detail</a>
                             <a href="<?= base_url('tech/activity_detail/delete/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
@@ -92,6 +93,14 @@
                   <select class="custom-select rounded-0" id="constrain_category" name="constrain_category" disabled>
                     <?php foreach($constrain_categories as $cc) : ?>
                     <option value="<?= $cc->constrain_category_id ?>" <?= $activities['constrain_category_id'] == $cc->constrain_category_id ? 'selected' : '' ?> ><?= $cc->constrain_category_name ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="urgency">Urgency</label>
+                  <select class="custom-select rounded-0" id="urgency" name="urgency" disabled>
+                    <?php foreach($urgencies as $urg) : ?>
+                    <option value="<?= $urg->urgency_id ?>" <?= $activities['urgency_id'] == $urg->urgency_id ? 'selected' : '' ?> ><?= $urg->urgency_name ?></option>
                     <?php endforeach ?>
                   </select>
                 </div>
