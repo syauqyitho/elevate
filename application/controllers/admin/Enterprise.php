@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Enterprise extends CI_Controller {
     public function __construct() {
@@ -7,6 +7,8 @@ class Enterprise extends CI_Controller {
         $this->load->library('slice');
         $this->load->model('model_enterprise');
         $this->load->model('model_enterprise_status');
+        check_session();
+        role_admin();
     }
 
     public function index() {

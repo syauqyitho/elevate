@@ -12,6 +12,8 @@ class Activity_detail extends CI_Controller {
         $this->load->model('model_activity_status');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
+        check_session();
+        role_admin();
     }
 
     public function add() {

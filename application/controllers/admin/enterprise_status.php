@@ -6,6 +6,8 @@ class Enterprise_status extends CI_Controller {
         parent::__construct();
         $this->load->library('slice');
         $this->load->model('model_enterprise_status');
+        check_session();
+        role_admin();
     }
 
     public function index() {

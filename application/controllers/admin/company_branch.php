@@ -7,6 +7,8 @@ class Company_branch extends CI_Controller {
         $this->load->library('slice');
         $this->load->model('model_company_branch');
         $this->load->model('model_group_of_entity');
+        check_session();
+        role_admin();
     }
     
     public function index() {

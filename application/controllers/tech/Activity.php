@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Activity extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->library('slice');
         $this->load->model('model_user'); 
         $this->load->model('model_activity');
         $this->load->model('model_urgency');
@@ -12,6 +11,10 @@ class Activity extends CI_Controller {
         $this->load->model('model_activity_status');
         $this->load->model('model_activity_category'); 
         $this->load->model('model_constrain_category'); 
+        $this->load->library('slice');
+        $this->load->helper('check_session_helper');
+        check_session();
+        role_tech();
     }
     
     public function index() {

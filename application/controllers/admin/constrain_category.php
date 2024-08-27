@@ -6,6 +6,8 @@ class Constrain_category extends CI_Controller {
         parent::__construct();
         $this->load->library('slice');
         $this->load->model('model_constrain_category');
+        check_session();
+        role_admin();
     }
     
     public function index() {

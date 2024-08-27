@@ -6,6 +6,8 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->load->library('slice');
         $this->load->model('model_dashboard');
+        check_session();
+        role_tech();
     }
     
     public function index() {

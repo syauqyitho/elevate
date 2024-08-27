@@ -7,6 +7,8 @@ class Group_of_entity extends CI_Controller {
         $this->load->library('slice');
         $this->load->model('model_enterprise');
         $this->load->model('model_group_of_entity');
+        check_session();
+        role_admin();
     }
     
     public function index() {

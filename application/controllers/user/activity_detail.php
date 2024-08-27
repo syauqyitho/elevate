@@ -8,6 +8,8 @@ class Activity_detail extends CI_Controller {
         $this->load->model('model_user');
         $this->load->model('model_level');
         $this->load->model('model_activity_detail');
+        check_session();
+        role_user();
     }
     
     public function detail() {

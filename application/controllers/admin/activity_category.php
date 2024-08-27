@@ -6,6 +6,8 @@ class Activity_category extends CI_Controller {
         parent::__construct();
         $this->load->library('slice');
         $this->load->model('model_activity_category');
+        check_session();
+        role_admin();
     }
     
     public function index() {
