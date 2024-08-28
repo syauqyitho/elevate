@@ -54,10 +54,12 @@ class User extends CI_controller {
                     'address' => $this->input->post('address'),
                     'department' => $this->input->post('department'),
                     'email' => $this->input->post('email'),
-                    // 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                    'password' => md5($this->input->post('password')),
                     'img' => $img['file_name']
                 );
+
+                if (!empty($this->input->post('password'))) {
+                    $data['password'] = md5($this->input->post('password'));
+                }
 
                 // var_dump($activity, $activity_detail);
                 // exit;
@@ -72,9 +74,11 @@ class User extends CI_controller {
                     'address' => $this->input->post('address'),
                     'department' => $this->input->post('department'),
                     'email' => $this->input->post('email'),
-                    // 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
-                    'password' => md5($this->input->post('password'))
                 );
+
+                if (!empty($this->input->post('password'))) {
+                    $data['password'] = md5($this->input->post('password'));
+                }
 
                 // var_dump($activity, $activity_detail);
                 // exit;
@@ -98,12 +102,6 @@ class User extends CI_controller {
             $created_at = $dt->format('Y-m-d H:i:s');
             $this->form_validation->set_rules('email', 'Email', 'required|trim');
             $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]', ['min_length' => 'password too short']);
-            // $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
-            // $this->form_validation->set_rules('name', 'NAME','required');
-            // $this->form_validation->set_rules('username', 'USERNAME','required');
-            // $this->form_validation->set_rules('email','EMAIL','required|valid_email');
-            // $this->form_validation->set_rules('password','PASSWORD','required');
-            // $this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
 
             $this->upload->initialize(array(
                 'upload_path' => './uploads',
@@ -130,10 +128,12 @@ class User extends CI_controller {
                     'address' => $this->input->post('address'),
                     'department' => $this->input->post('department'),
                     'email' => $this->input->post('email'),
-                    // 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                    'password' => md5($this->input->post('password')),
                     'img' => $img['file_name']
                 );
+                
+                if (!empty($this->input->post('password'))) {
+                    $data['password'] = md5($this->input->post('password'));
+                }
 
                 // var_dump($data);
                 // exit;
@@ -149,9 +149,11 @@ class User extends CI_controller {
                     'address' => $this->input->post('address'),
                     'department' => $this->input->post('department'),
                     'email' => $this->input->post('email'),
-                    // 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                    'password' => md5($this->input->post('password'))
                 );
+                
+                if (!empty($this->input->post('password'))) {
+                    $data['password'] = md5($this->input->post('password'));
+                }
 
                 // var_dump($data);
                 // exit;
