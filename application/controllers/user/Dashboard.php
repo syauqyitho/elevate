@@ -11,7 +11,8 @@ class Dashboard extends CI_Controller {
     }
     
     public function index() {
-        $data['activities'] = $this->model_dashboard->get_activity()->result();
+        $user_id = $this->session->user_id;
+        $data['activities'] = $this->model_dashboard->user_activity($user_id)->result();
         $this->slice->view('dashboard.user', $data); 
     }
 }
