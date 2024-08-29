@@ -17,12 +17,14 @@ class Activity extends CI_Controller {
     }
     
     public function index() {
-        $data['activities'] = $this->model_activity->index()->result();
+        $id = $this->session->user_id;
+        $data['activities'] = $this->model_activity->index($id)->result();
         $this->slice->view('activity.index', $data);
     }
     
     public function add() {
         if (isset($_POST['submit'])) {
+            $user_id = $this->session->user_id;
             $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
             $created_at = $dt->format('Y-m-d H:i:s');
             /* becareful with file_name format
@@ -50,7 +52,7 @@ class Activity extends CI_Controller {
 
                 $data = array(
                     'activity_status_id' => 1,
-                    'user_id' => 1,
+                    'user_id' => $user_id,
                     'activity_category_id' => $this->input->post('activity_category'),
                     'constrain_category_id' => $this->input->post('constrain_category'),
                     'urgency_id' => $this->input->post('urgency'),
@@ -67,7 +69,7 @@ class Activity extends CI_Controller {
             } else {
                 $data = array(
                     'activity_status_id' => 1,
-                    'user_id' => 1,
+                    'user_id' => $user_id,
                     'activity_category_id' => $this->input->post('activity_category'),
                     'constrain_category_id' => $this->input->post('constrain_category'),
                     'urgency_id' => $this->input->post('urgency'),

@@ -23,12 +23,14 @@ class Activity extends CI_Controller {
     }
 
     public function history() {
-        $data['activities'] = $this->model_activity->tech_history()->result();
+        $id = $this->session->user_id;
+        $data['activities'] = $this->model_activity->tech_history($id)->result();
         $this->slice->view('tech.activity.history', $data);
     }
     
     public function take() {
        $id = $this->uri->segment(4);
+       $user_id = $this->session->user_id;
        $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
        $created_at = $dt->format("Y-m-d_H:i:s");
        $activities = array(
@@ -36,7 +38,7 @@ class Activity extends CI_Controller {
        );
        
        $activity_details = array(
-           'user_id' => 2,
+           'user_id' => $user_id,
            'created_at' => $created_at
        );
        

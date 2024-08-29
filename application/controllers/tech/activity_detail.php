@@ -19,6 +19,7 @@ class Activity_detail extends CI_Controller {
     public function add() {
         if (isset($_POST['submit'])) {
             $id = $this->uri->segment(4);
+            $user_id = $this->session->user_id;
             $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
             $created_at = $dt->format("Y-m-d_H:i:s");
             // configuration for file upload
@@ -42,7 +43,7 @@ class Activity_detail extends CI_Controller {
                 );
 
                 $activity_detail = array(
-                    'user_id' => 2,
+                    'user_id' => $user_id,
                     'action_description' => $this->input->post('action_description'),
                     'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
@@ -63,7 +64,7 @@ class Activity_detail extends CI_Controller {
                 );
 
                 $activity_detail = array(
-                    'user_id' => 2,
+                    'user_id' => $user_id,
                     'action_description' => $this->input->post('action_description'),
                     'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
@@ -134,7 +135,6 @@ class Activity_detail extends CI_Controller {
                 );
 
                 $activity_detail = array(
-                    'user_id' => 2,
                     'action_description' => $this->input->post('action_description'),
                     'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),

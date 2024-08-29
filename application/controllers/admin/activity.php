@@ -17,7 +17,7 @@ class Activity extends CI_Controller {
     }
     
     public function index() {
-        $data['activities'] = $this->model_activity->index()->result();
+        $data['activities'] = $this->model_activity->admin_index()->result();
         $this->slice->view('admin.activity.index', $data);
     }
     

@@ -1,7 +1,7 @@
 <?php
 
 class Model_activity extends CI_Model {
-    public function index() {
+    public function index($id) {
         $query = "SELECT 
                     a.activity_id,
                     a.created_at,
@@ -9,7 +9,8 @@ class Model_activity extends CI_Model {
                     st.activity_status_name AS status 
                 FROM
                     activity a
-                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id";
+                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
+                WHERE a.user_id=".$id;
 
         return $this->db->query($query);
     } 
@@ -66,8 +67,8 @@ class Model_activity extends CI_Model {
         return $this->db->query($query);
     } 
 
-    public function tech_history() {
-        $query = "SELECT
+    public function tech_history($id) {
+        $query = "SELECT DISTINCT
                     a.activity_id,
                     a.created_at,
                     a.constrain,
@@ -75,8 +76,8 @@ class Model_activity extends CI_Model {
                 FROM
                     activity a
                     LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
-                WHERE NOT a.activity_status_id = 1
-                ORDER BY a.activity_id";
+                    LEFT JOIN activity_detail ad ON a.activity_id = ad.activity_id
+                WHERE NOT a.activity_status_id = 1 AND ad.user_id=".$id." ORDER BY a.activity_id";
 
         return $this->db->query($query);
     } 
@@ -136,19 +137,32 @@ class Model_activity extends CI_Model {
        $this->db->trans_complete();
     }
    
+    // public function admin_index() {
+    //     $query = "SELECT 
+    //             a.activity_id,
+    //             u.name AS user_name,
+    //             st.activity_status_name AS status,
+    //             a.img
+    //         FROM
+    //             activity a
+    //             LEFT JOIN activity_status st ON st.activity_status_id = ac.activity_status_i
+    //             LEFT JOIN user u ON a.user_id = u.user_id";
+
+    //     return $this->db->query($query);
+    // }
+
     public function admin_index() {
         $query = "SELECT 
-                a.activity_id,
-                u.name AS user_name,
-                st.activity_status_name AS status,
-                a.img
-            FROM
-                activity a
-                LEFT JOIN activity_status st ON st.activity_status_id = ac.activity_status_i
-                LEFT JOIN user u ON a.user_id = u.user_id";
+                    a.activity_id,
+                    a.created_at,
+                    a.constrain,
+                    st.activity_status_name AS status 
+                FROM
+                    activity a
+                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id";
 
         return $this->db->query($query);
-    }
+    } 
     
     public function admin_edit($id) {
         $query = "SELECT
