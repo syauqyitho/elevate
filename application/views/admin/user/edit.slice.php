@@ -27,6 +27,14 @@
                   <input type="text" class="form-control rounded-0" id="phone_number" name="phone_number" value="<?= $users['phone_number'] ?>" placeholder="No. Telepon">
                 </div>
                 <div class="form-group">
+                  <label for="company_branch">Cabang</label>
+                  <select class="custom-select rounded-0" id="company_branch" name="company_branch">
+                    <?php foreach($company_branchs as $cb) : ?>
+                    <option value="<?= $cb->company_branch_id ?>" <?= $users['company_branch_id'] == $cb->company_branch_id ? 'selected' : '' ?> ><?= $cb->branch_name ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="address">Alamat</label>
                   <textarea class="form-control" rows="3" id="address" name="address" placeholder="Enter ..."><?= $users['address'] ?></textarea>
                 </div>
