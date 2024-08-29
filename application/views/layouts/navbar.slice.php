@@ -66,23 +66,23 @@
       </li> -->
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img src="<?= base_url('/assets/dist/img/user2-160x160.jpg') ?>" class="user-image img-circle elevation-2" alt="User Image">
-          <span class="d-none d-md-inline">Alexander Pierce</span>
+          <img src="<?= base_url('uploads/'.$this->session->userdata['img']) ?>" class="user-image img-circle elevation-2" alt="Img">
+          <span class="d-none d-md-inline"><?= $this->session->userdata['name'] ?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-primary">
-            <img src="<?= base_url('assets/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
+            <img src="<?= base_url('uploads/'.$this->session->userdata['img']) ?>" class="img-circle elevation-2" alt="Img">
 
             <p>
-              Alexander Pierce
+              <?= $this->session->userdata['name'] ?>
               <!-- <small>Member since Nov. 2012</small> -->
             </p>
           </li>
           <!-- Menu Footer-->
           <li class="user-footer">
             <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
-            <a href="#" class="btn btn-default btn-flat float-right">Sign out</a>
+            <a href="<?= base_url('auth/login/logout') ?>" class="btn btn-default btn-flat float-right">Sign out</a>
           </li>
         </ul>
       </li>

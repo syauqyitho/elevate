@@ -27,6 +27,8 @@ class Login extends CI_Controller {
                 $data = array(
                     'user_id' => $user['user_id'],
                     'role_id' => $user['role_id'],
+                    'img' => $user['img'],
+                    'name' => $user['name'],
                     'status_login' => 'Oke'
                 );
 
