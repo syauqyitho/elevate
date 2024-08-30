@@ -14,4 +14,11 @@ class Dashboard extends CI_Controller {
         $data['activities'] = $this->model_dashboard->get_activity()->result();
         $this->slice->view('tech.dashboard.tech', $data); 
     }
+    
+    public function dash() {
+        $user_id = $this->session->user_id;
+        $data['on_queue'] = $this->model_dashboard->tech_activity_entry()->result();
+        $data['done'] = $this->model_dashboard->tech_activity_done($user_id)->result();
+        $this->slice->view('tech.dashboard.index', $data);
+    }
 }
