@@ -7,6 +7,7 @@ class Activity extends CI_Controller {
         $this->load->model('model_user'); 
         $this->load->model('model_activity');
         $this->load->model('model_urgency');
+        $this->load->model('model_activity_tech'); 
         $this->load->model('model_activity_detail');
         $this->load->model('model_activity_status');
         $this->load->model('model_activity_category'); 
@@ -18,7 +19,9 @@ class Activity extends CI_Controller {
     }
     
     public function index() {
-        $data['activities'] = $this->model_activity->tech_index()->result();
+        $id = $this->session->user_id;
+        $data['activities'] = $this->model_activity->tech_ticket_inqueue()->result();
+        $data['histories'] = $this->model_activity->technician_ticket_list($id)->result();
         $this->slice->view('tech.activity.index', $data);
     }
 
@@ -38,12 +41,11 @@ class Activity extends CI_Controller {
        );
        
        $activity_details = array(
-           'user_id' => $user_id,
-           'created_at' => $created_at
+           'activity_tech_id' => $user_id,
        );
        
        $this->model_activity->tech_take($id, $activities, $activity_details);
-       redirect('tech/activity/history');
+       redirect('tech/activity/');
     }
     
     public function edit() {
@@ -90,6 +92,7 @@ class Activity extends CI_Controller {
             $id = $this->uri->segment(4);
             $data['activities'] = $this->model_activity->detail($id)->row_array();
             $data['activity_details'] = $this->model_activity_detail->list_detail($id)->result();
+            $data['list_tech'] = $this->model_activity_tech->index($id)->result();
             $data['users'] = $this->model_user->index()->result();
             $data['urgencies'] = $this->model_urgency->index()->result();
             $data['activity_status'] = $this->model_activity_status->index()->result();

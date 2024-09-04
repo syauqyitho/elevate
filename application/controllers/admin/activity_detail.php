@@ -42,7 +42,8 @@ class Activity_detail extends CI_Controller {
                 );
 
                 $activity_detail = array(
-                    'user_id' => $this->input->post('name'),
+                    // the user_id from input field is to find the activity_tech_id
+                    'activity_tech_id' => $this->input->post('name'),
                     'action_description' => $this->input->post('action_description'),
                     'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
@@ -63,7 +64,8 @@ class Activity_detail extends CI_Controller {
                 );
 
                 $activity_detail = array(
-                    'user_id' => $this->input->post('name'),
+                    // the user_id from input field is to find the activity_tech_id
+                    'activity_tech_id' => $this->input->post('name'),
                     'action_description' => $this->input->post('action_description'),
                     'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
@@ -81,7 +83,7 @@ class Activity_detail extends CI_Controller {
         } else {
             $id = $this->uri->segment(4);
             $data['activity_details'] = $this->model_activity_detail->activity_detail($id)->row_array();
-            $data['users'] = $this->model_user->index()->result();
+            $data['users'] = $this->model_user->tech_role($id)->result();
             $data['levels'] = $this->model_level->index()->result();
             $data['activity_status'] = $this->model_activity_status->index()->result();
             // var_dump($data);
@@ -116,7 +118,7 @@ class Activity_detail extends CI_Controller {
                 );
 
                 $activity_detail = array(
-                    'user_id' => $this->input->post('name'),
+                    'activity_tech_id' => $this->input->post('name'),
                     'action_description' => $this->input->post('action_description'),
                     'level_id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
@@ -136,7 +138,7 @@ class Activity_detail extends CI_Controller {
                 );
 
                 $activity_detail = array(
-                    'user_id' => $this->input->post('name'),
+                    'activity_tech_id' => $this->input->post('name'),
                     'action_description' => $this->input->post('action_description'),
                     'level_Id' => $this->input->post('level'),
                     'analyze' => $this->input->post('analyze'),
@@ -152,11 +154,13 @@ class Activity_detail extends CI_Controller {
             }
         } else {
             $id = $this->uri->segment(4);
+            $activity = $this->db->get_where('activity_detail', array('activity_detail_id' => $id))->row_array();
+            $activity_id = $activity['activity_id'];
             $data['activity_details'] = $this->model_activity_detail->activity_edit($id)->row_array();
-            $data['users'] = $this->model_user->index()->result();
+            $data['users'] = $this->model_user->tech_role($activity_id)->result();
             $data['levels'] = $this->model_level->index()->result();
             $data['activity_status'] = $this->model_activity_status->index()->result();
-            // var_dump($data);
+            // var_dump($id);
             // exit;
 
             return $this->slice->view('admin.activity.edit_detail', $data);

@@ -9,14 +9,14 @@
               </div>
               <div class="card-body">
                 <?= form_open_multipart('tech/activity_detail/edit/'.$activity_details['activity_detail_id']) ?>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="name">Nama Teknisi</label>
-                  <select class="custom-select rounded-0" id="name" disabled>
+                  <select class="custom-select rounded-0" id="name" name="name">
                     <?php foreach($users as $usr) : ?>
                     <option value="<?= $usr->user_id ?>" <?= $activity_details['user_id'] == $usr->user_id ? 'selected' : '' ?> ><?= $usr->name ?></option>
                     <?php endforeach ?>
                   </select>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <label for="status">Status</label>
                   <select class="custom-select rounded-0" id="status" name="activity_status">

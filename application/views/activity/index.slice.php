@@ -5,7 +5,7 @@
 @section('content')
         <div class="row">
           <div class="col-12">
-            <div class="card card-primary">
+            <div class="card card-primary" style="height:67vh">
               <div class="card-header">
                 <a href="<?= base_url('user/activity/add') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Transaksi Jasa</a>
               </div>

@@ -58,36 +58,84 @@ class Model_activity extends CI_Model {
                     a.activity_id,
                     a.created_at,
                     a.constrain,
-                    st.activity_status_name AS status 
+                    st.activity_status_name AS status,
+                    u.name
                 FROM
                     activity a
                     LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
-                WHERE a.activity_status_id = 1";
-
-        return $this->db->query($query);
-    } 
-
-    public function tech_history($id) {
-        $query = "SELECT DISTINCT
-                    a.activity_id,
-                    a.created_at,
-                    a.constrain,
-                    st.activity_status_name AS status 
-                FROM
-                    activity a
-                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
-                    LEFT JOIN activity_detail ad ON a.activity_id = ad.activity_id
-                WHERE NOT a.activity_status_id = 1 AND ad.user_id=".$id." ORDER BY a.activity_id";
+                    LEFT JOIN user u ON a.user_id = u.user_id
+                    LEFT JOIN activity_tech atc ON a.activity_id = atc.activity_id
+                WHERE
+                    a.activity_status_id=1";
 
         return $this->db->query($query);
     } 
     
+    public function tech_ticket_inqueue() {
+        $query = "SELECT
+                    a.activity_id,
+                    a.created_at,
+                    a.constrain,
+                    st.activity_status_name AS status,
+                    u.name
+                FROM
+                    activity a
+                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
+                    LEFT JOIN user u ON a.user_id = u.user_id
+                    LEFT JOIN activity_tech atc ON a.activity_id = atc.activity_id
+                WHERE
+                    a.activity_status_id=1";
+
+        return $this->db->query($query);
+    } 
+
+    public function technician_ticket_list($id) {
+        $query = "SELECT
+                    a.activity_id,
+                    a.created_at,
+                    a.constrain,
+                    st.activity_status_name AS status,
+                    u.name
+                FROM
+                    activity a
+                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
+                    LEFT JOIN activity_tech atc ON a.activity_id = atc.activity_id
+                    LEFT JOIN user u ON a.user_id = u.user_id
+                WHERE NOT
+                    a.activity_status_id = 1 AND atc.user_id=".$id." ORDER BY a.activity_id";
+
+        return $this->db->query($query);
+    } 
+ 
+    public function tech_history($id) {
+        $query = "SELECT
+                    a.activity_id,
+                    a.created_at,
+                    a.constrain,
+                    st.activity_status_name AS status,
+                    u.name
+                FROM
+                    activity a
+                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
+                    LEFT JOIN activity_tech atc ON a.activity_id = atc.activity_id
+                    LEFT JOIN user u ON a.user_id = u.user_id
+                WHERE
+                    a.activity_status_id = 4 AND atc.user_id=".$id." ORDER BY a.activity_id";
+
+        return $this->db->query($query);
+    }    
+
     public function tech_take($id, $activities, $activity_details) {
         $this->db->trans_start();
+
+        // update activity
         $this->db->where('activity_id', $id);
         $this->db->update('activity', $activities);
-        $activity_details['activity_id'] = $id;
-        $this->db->insert('activity_detail', $activity_details);
+
+        // insert activity_tech
+        $user_id = $activity_details['activity_tech_id'];
+        $activity_tech = array('user_id' => $user_id, 'activity_id' => $id);
+        $this->db->insert('activity_tech', $activity_tech);
         $this->db->trans_complete();
     }
      
@@ -156,10 +204,12 @@ class Model_activity extends CI_Model {
                     a.activity_id,
                     a.created_at,
                     a.constrain,
-                    st.activity_status_name AS status 
+                    st.activity_status_name AS status,
+                    u.name
                 FROM
                     activity a
-                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id";
+                    LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
+                    LEFT JOIN user u ON a.user_id = u.user_id";
 
         return $this->db->query($query);
     } 
