@@ -27,6 +27,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('user/activity/history') ?>" class="nav-link">
+              <i class="nav-icon fas fa-history"></i>
+              <p>
+                Riwayat
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
