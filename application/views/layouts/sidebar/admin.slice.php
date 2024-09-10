@@ -77,6 +77,37 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('admin/report/') ?>" class="nav-link">
+              <i class="nav-icon fas fa-history"></i>
+              <p>
+                Riwayat
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Laporan
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/report/user/') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('admin/report/tech/') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Technician</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

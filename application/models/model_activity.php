@@ -501,4 +501,126 @@ class Model_activity extends CI_Model {
        $this->db->update('company_branch', $company_branch);
        $this->db->trans_complete();
     }
+
+    public function admin_user_role_report($id = null, $start_date = null, $end_date = null) {
+        // Set default date range if not provided
+        $start_date = $start_date ? date('Y-m-d H:i:s', strtotime($start_date)) : date('Y-m-d 00:00:00');
+        $end_date = $end_date ? date('Y-m-d H:i:s', strtotime($end_date)) : date('Y-m-d 23:59:59');
+
+        // Build the query
+        $this->db->select('
+            a.activity_id,
+            u.name AS user_name,
+            st.activity_status_name AS status,
+            ac.activity_category_name AS activity_category,
+            cc.constrain_category_name AS constrain_category,
+            ug.urgency_name AS urgency,
+            a.constrain,
+            a.constrain_description,
+            a.created_at,
+            atc.activity_tech_id,
+            ut.name AS tech_name,
+            ad.activity_detail_id,
+            lvl.level_name AS level,
+            ad.action_description,
+            ad.analyze,
+            ad.troubleshooting,
+            ad.reason
+        ');
+        $this->db->from('activity a');
+        $this->db->join('user u', 'a.user_id = u.user_id', 'left');
+        $this->db->join('activity_status st', 'a.activity_status_id = st.activity_status_id', 'left');
+        $this->db->join('activity_category ac', 'a.activity_category_id = ac.activity_category_id', 'left');
+        $this->db->join('constrain_category cc', 'a.constrain_category_id = cc.constrain_category_id', 'left');
+        $this->db->join('urgency ug', 'a.urgency_id = ug.urgency_id', 'left');
+        $this->db->join('activity_tech atc', 'a.activity_id = atc.activity_id', 'left');
+        $this->db->join('user ut', 'atc.user_id = ut.user_id', 'left');
+        $this->db->join('activity_detail ad', 'a.activity_id = ad.activity_id', 'left');
+        $this->db->join('level lvl', 'ad.level_id = lvl.level_id', 'left');
+
+        // Apply filters
+        if ($id === null) {
+            // If no user ID is provided, filter by role ID (assuming role_id = 1 for this example)
+            $this->db->where('u.role_id', 1); // Assuming role_id = 1
+        } else {
+            $this->db->where('a.user_id', (int)$id); // Ensuring $id is an integer
+        }
+        $this->db->where('a.created_at >=', $start_date);
+        $this->db->where('a.created_at <=', $end_date);
+
+        // Order by activity_id
+        $this->db->order_by('a.activity_id');
+
+        // Execute query
+        $query = $this->db->get();
+        
+        // Check for errors
+        if (!$query) {
+            log_message('error', 'Database query failed: ' . $this->db->error()['message']);
+            return [];
+        }
+
+        return $query->result_array(); // Changed to result_array for better readability
+    }
+
+    public function admin_tech_role_report($id = null, $start_date = null, $end_date = null) {
+        // Set default date range if not provided
+        $start_date = $start_date ? date('Y-m-d H:i:s', strtotime($start_date)) : date('Y-m-d 00:00:00');
+        $end_date = $end_date ? date('Y-m-d H:i:s', strtotime($end_date)) : date('Y-m-d 23:59:59');
+
+        // Build the query
+        $this->db->select('
+            a.activity_id,
+            u.name AS user_name,
+            st.activity_status_name AS status,
+            ac.activity_category_name AS activity_category,
+            cc.constrain_category_name AS constrain_category,
+            ug.urgency_name AS urgency,
+            a.constrain,
+            a.constrain_description,
+            a.created_at,
+            atc.activity_tech_id,
+            ut.name AS tech_name,
+            ad.activity_detail_id,
+            lvl.level_name AS level,
+            ad.action_description,
+            ad.analyze,
+            ad.troubleshooting,
+            ad.reason
+        ');
+        $this->db->from('activity a');
+        $this->db->join('user u', 'a.user_id = u.user_id', 'left');
+        $this->db->join('activity_status st', 'a.activity_status_id = st.activity_status_id', 'left');
+        $this->db->join('activity_category ac', 'a.activity_category_id = ac.activity_category_id', 'left');
+        $this->db->join('constrain_category cc', 'a.constrain_category_id = cc.constrain_category_id', 'left');
+        $this->db->join('urgency ug', 'a.urgency_id = ug.urgency_id', 'left');
+        $this->db->join('activity_tech atc', 'a.activity_id = atc.activity_id', 'left');
+        $this->db->join('user ut', 'atc.user_id = ut.user_id', 'left');
+        $this->db->join('activity_detail ad', 'a.activity_id = ad.activity_id', 'left');
+        $this->db->join('level lvl', 'ad.level_id = lvl.level_id', 'left');
+
+        // Apply filters
+        if ($id === null) {
+            // If no user ID is provided, filter by role ID (assuming role_id = 1 for this example)
+            $this->db->where('u.role_id', 2); // Assuming role_id = 1
+        } else {
+            $this->db->where('atc.user_id', (int)$id); // Ensuring $id is an integer
+        }
+        $this->db->where('a.created_at >=', $start_date);
+        $this->db->where('a.created_at <=', $end_date);
+
+        // Order by activity_id
+        $this->db->order_by('a.activity_id');
+
+        // Execute query
+        $query = $this->db->get();
+        
+        // Check for errors
+        if (!$query) {
+            log_message('error', 'Database query failed: ' . $this->db->error()['message']);
+            return [];
+        }
+
+        return $query->result_array(); // Changed to result_array for better readability
+    }
 }

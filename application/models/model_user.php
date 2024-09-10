@@ -39,6 +39,23 @@ class Model_user extends CI_Model {
         return $this->db->query($query);
     }
     
+    public function fetch_user_role_list() {
+        $this->db->select('user_id, name');
+        $this->db->from('user');
+        $this->db->where('role_id', 1);
+
+        $query = $this->db->get();
+        
+        // Check if the query is successful
+        if (!$query) {
+            log_message('error', 'Database query failed!' . $this->db->last_query());
+            return []; // return an empty array or handle the error properly.
+        }
+        
+        // Return the result as an assosiative array
+        return $query->result();
+    }
+    
     public function fetch_technician_role_list() {
         $this->db->select('user_id, name');
         $this->db->from('user');
