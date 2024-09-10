@@ -28,14 +28,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('tech/activity/report') ?>" class="nav-link">
-              <i class="nav-icon fas fa-history"></i>
-              <p>
-                Riwayat
-              </p>
-            </a>
-          </li>
-          <!-- <li class="nav-item">
             <a href="<?= base_url('tech/activity/history') ?>" class="nav-link">
               <i class="nav-icon fas fa-history"></i>
               <p>
@@ -47,10 +39,10 @@
             <a href="<?= base_url('tech/activity/report') ?>" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
-                Riwayat
+                Laporan
               </p>
             </a>
-          </li> -->
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
