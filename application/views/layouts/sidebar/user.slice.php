@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('user/activity/history/') ?>" class="nav-link">
+            <a href="<?= base_url('user/history/') ?>" class="nav-link">
               <i class="nav-icon fas fa-history"></i>
               <p>
                 Riwayat

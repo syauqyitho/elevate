@@ -52,6 +52,26 @@ class Model_activity extends CI_Model {
         $this->db->where('activity_id', $id);
         $this->db->delete('activity');
     }
+
+    public function history($id) {
+        $this->db->select('
+            a.activity_id,
+            a.constrain,
+            a.created_at,
+            ast.activity_status_name AS status,
+            u.name
+        ');
+        $this->db->from('activity a');
+        $this->db->join('activity_status ast', 'a.activity_status_id = ast.activity_status_id', 'left');
+        $this->db->join('user u', 'a.user_id = u.user_id', 'left');
+        $this->db->where('a.activity_status_id', 4);
+        $this->db->where('u.user_id', $id);
+        $this->db->order_by('a.activity_id');
+        
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
  
     public function user_report($id, $start_date = null, $end_date = null) {
         // if user provide date range
