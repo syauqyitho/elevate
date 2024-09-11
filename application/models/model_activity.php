@@ -53,78 +53,15 @@ class Model_activity extends CI_Model {
         $this->db->delete('activity');
     }
  
-    public function user_activity_history($id) {
-        // $query = "SELECT
-        //             a.activity_id,
-        //             a.created_at,
-        //             a.constrain,
-        //             st.activity_status_name AS status,
-        //             u.name
-        //         FROM
-        //             activity a
-        //             LEFT JOIN activity_status st ON st.activity_status_id = a.activity_status_id
-        //             LEFT JOIN user u ON a.user_id = u.user_id
-        //         WHERE
-        //             a.user_id=".$id." ORDER BY a.activity_id";
+    public function user_report($id, $start_date = null, $end_date = null) {
+        // if user provide date range
+        if ($start_date) {
+            $start_date = date('Y-m-d', strtotime($start_date));
+        }
         
-        // return $this->db->query($query);
-
-        // $this->db->select('
-        //     a.activity_id,
-        //     u.name,
-        //     st.activity_status_name AS status,
-        //     a.constrain,
-        //     a.created_at
-        // ');
-        // $this->db->from('activity a');
-        // $this->db->join('activity_status st', 'a.activity_status_id  = st.activity_status_id', 'left');
-        // $this->db->join('user u', 'a.user_id = u.user_id', 'left');
-        // $this->db->where('a.user_id', $id);
-        // $this->db->order_by('a.activity_id');
-        
-        // $query = $this->db->get();
-        // return $query->result();
-        
-        $this->db->select('
-            a.activity_id,
-            u.name AS user_name,
-            st.activity_status_name AS status,
-            ac.activity_category_name AS activity_category,
-            cc.constrain_category_name AS constrain_category,
-            ug.urgency_name AS urgency,
-            a.constrain,
-            a.constrain_description,
-            a.created_at,
-            atc.activity_tech_id,
-            ut.name AS tech_name,
-            ad.activity_detail_id,
-            lvl.level_name AS level,
-            ad.action_description,
-            ad.analyze,
-            ad.troubleshooting,
-            ad.reason
-        ');
-        $this->db->from('activity a');
-        $this->db->join('user u', 'a.user_id = u.user_id', 'left');
-        $this->db->join('activity_status st', 'a.activity_status_id = st.activity_status_id', 'left');
-        $this->db->join('activity_category ac', 'a.activity_category_id = ac.activity_category_id', 'left');
-        $this->db->join('constrain_category cc', 'a.constrain_category_id = cc.constrain_category_id', 'left');
-        $this->db->join('urgency ug', 'a.urgency_id = ug.urgency_id', 'left');
-        $this->db->join('activity_tech atc', 'a.activity_id = atc.activity_id', 'left');
-        $this->db->join('user ut', 'atc.user_id = ut.user_id', 'left');
-        $this->db->join('activity_detail ad', 'a.activity_id = ad.activity_id', 'left');
-        $this->db->join('activity_detail adt', 'atc.activity_tech_id = adt.activity_tech_id', 'left');
-        $this->db->join('level lvl', 'ad.level_id = lvl.level_id', 'left');
-        $this->db->where('a.user_id', $id);
-        $this->db->order_by('a.activity_id');
-        
-        $query = $this->db->get();
-        return $query->result_array();
-    }
- 
-    public function user_activity_history_period($id, $start_date, $end_date) {
-        $start_date = date('Y-m-d', strtotime($start_date));
-        $end_date = date('Y-m-d', strtotime($end_date));
+        if ($end_date) {
+            $end_date = date('Y-m-d', strtotime($end_date));
+        }
 
         $this->db->select('
             a.activity_id,
@@ -157,8 +94,16 @@ class Model_activity extends CI_Model {
         $this->db->join('activity_detail adt', 'atc.activity_tech_id = adt.activity_tech_id', 'left');
         $this->db->join('level lvl', 'ad.level_id = lvl.level_id', 'left');
         $this->db->where('a.user_id', $id);
-        $this->db->where('a.created_at >=', $start_date);
-        $this->db->where('a.created_at <=', $end_date);
+        
+        // if user provide date range
+        if ($start_date) {
+            $this->db->where('a.created_at >=', $start_date);
+        }
+
+        if ($end_date) {
+            $this->db->where('a.created_at <=', $end_date);
+        }
+
         $this->db->order_by('a.activity_id');
         
         $query = $this->db->get();
