@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed')
 <html lang="en">
 <head>
   @include('layouts.head')
+  @yield('addon-style')
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -74,5 +75,6 @@ defined('BASEPATH') OR exit('No direct script access allowed')
 
 <!-- REQUIRED SCRIPTS -->
 @include('layouts.script')
+@yield('addon-script')
 </body>
 </html>

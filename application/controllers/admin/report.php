@@ -239,4 +239,45 @@ class Report extends CI_Controller {
             $this->slice->view('admin.report.tech', $data);
         }
     }
+
+    public function excel() {
+        header("Content-Type=application/vnd.ms-excel");
+        header("Content-Disposition:attachment;filename=filename.xls");
+        $data['reports'] = $this->model_transaction->report()->result();
+        $this->load->view('transaction/excel', $data);
+    }
+
+    public function pdf() {
+        $this->load->library('Pdf');
+        $pdf = new FPDF('P', 'mm', 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 14);
+        // $pdf->SetFontSize(14);
+        $pdf->Text(10, 10, 'LAPORAN TRANSAKSI');
+        $pdf->SetFont('Arial', '', 10);
+        // $pdf->SetFontSize(10);
+        $pdf->Cell(10, 20, '', '', 1);
+        $pdf->Cell(10, 7, 'No', 1, 0);
+        $pdf->Cell(27, 7, 'Tanggal', 1, 0);
+        $pdf->Cell(30, 7, 'Operator', 1, 0);
+        $pdf->Cell(30, 7, 'Total Transaksi', 1, 1);
+        // // Get from database
+        // $pdf->SetFont('Arial', '', 'L');
+        $data = $this->model_transaction->report()->result();
+        $no = 1;
+        $total = 0;
+
+        foreach ($data as $dt) {
+            $pdf->Cell(10, 7, $no, 1, 0);
+            $pdf->Cell(27, 7, $dt->tanggal_transaksi, 1, 0);
+            $pdf->Cell(30, 7, $dt->nama, 1, 0);
+            $pdf->Cell(30, 7, $dt->total, 1, 1);
+            $no++;
+            $total = $total+$dt->total;
+        }
+
+        $pdf->Cell(67, 7, 'Total', 1, 0, 'R');
+        $pdf->Cell(30, 7, $total, 1, 0);
+        $pdf->Output();
+    }
 }

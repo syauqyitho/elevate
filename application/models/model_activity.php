@@ -72,6 +72,10 @@ class Model_activity extends CI_Model {
         
         return $query->result();
     }
+    
+    // public function user_datatable($id = null, $start_date = null, $end_date = null) {
+        
+    // }
  
     public function user_report($id, $start_date = null, $end_date = null) {
         // if user provide date range
