@@ -9,12 +9,31 @@
               <div class="card-header align-middle">
                 <h2 class="card-title">Riwayat Transaksi Jasa</h2>
 
-                <div class="card-tools">
+                <!-- <div class="card-tools">
                   <?= form_open('tech/activity/report/') ?>
                     <div class="d-flex flex-wrap flex-md-nowrap">
                       <input type="date" class="form-control" name="start_date" value="<?= date('Y-m-d') ?>">
                       <input type="date" class="form-control mx-2"name="end_date" value="<?= date('Y-m-d') ?>">
                       <button class="btn btn-success" type="submit" name="submit">Submit</button>
+                    </div>
+                  </form>
+                </div> -->
+                <div class="card-tools">
+                  <?= form_open('tech/report/') ?>
+                    <div class="d-flex flex-wrap flex-md-nowrap">
+                      <input type="date" class="form-control" name="start_date" value="<?= date('Y-m-d') ?>">
+                      <input type="date" class="form-control mx-2"name="end_date" value="<?= date('Y-m-d') ?>">
+                      <!-- <button class="btn btn-success" type="submit" name="submit">Submit</button> -->
+                      <div class="btn-group">
+                        <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                          <a class="dropdown-item" href="<?= base_url('tech/report/pdf/') ?>">PDF</a>
+                          <!-- <a class="dropdown-item" href="<?= base_url('tech/report/excel/') ?>">Another action</a> -->
+                        </div>
+                      </div>
                     </div>
                   </form>
                 </div>
