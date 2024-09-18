@@ -58,7 +58,7 @@
                   </div>
                   <div class="col align-self-center">
                     <div class="d-flex justify-content-end">
-                      <a href="<?= base_url('user/activity/edit/').$act->activity_id ?>" class="btn btn-primary btn-sm">Detail</a>
+                      <a href="<?= base_url('activity/show/').$act->activity_id ?>" class="btn btn-primary btn-sm">Detail</a>
                     </div>
                   </div>
                 </div>

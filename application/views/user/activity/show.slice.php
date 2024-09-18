@@ -16,7 +16,7 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
-                    <?= form_open_multipart('user/activity/edit/'.$activities['activity_id']) ?>
+                    <?= form_open_multipart('activity/update/'.$activities['activity_id']) ?>
                       <div class="form-group">
                         <label for="created_at">Waktu Laporan</label>
                         <input type="text" class="form-control rounded-0" id="created_at" placeholder="Waktu Keluhan" value="<?= $activities['created_at'] ?>" disabled>
@@ -100,7 +100,7 @@
                           </div>
                         </div>
                       </div>
-                      <a href="<?= base_url('user/activity/') ?>" class="btn btn-primary">Kembali</a>
+                      <a href="<?= base_url('activity') ?>" class="btn btn-primary">Kembali</a>
                       <button class="btn btn-success" type="submit" name="submit">Simpan</button>
                     </form>
                   </div>
@@ -141,7 +141,7 @@
                                 </td>
                                 <td class="align-middle"><?= $ad->level_name ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('user/activity_detail/detail/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-primary">Detail</a>
+                                    <a href="<?= base_url('activity/detail/show/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-primary">Detail</a>
                                 </td>
                               </tr>
                             <?php  endforeach ?>

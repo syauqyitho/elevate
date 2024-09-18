@@ -9,7 +9,7 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-                <?= form_open_multipart('user/activity/add') ?>
+                <?= form_open_multipart('activity/store/') ?>
                 <div class="form-group">
                   <label for="activity_category">Kategori Jasa</label>
                   <select class="custom-select rounded-0" id="activity_category" name="activity_category">
@@ -54,7 +54,7 @@
                     </div> -->
                   </div>
                 </div>
-                <a href="<?= base_url('admin/activity/') ?>" class="btn btn-primary">Kembali</a>
+                <a href="<?= base_url('activity') ?>" class="btn btn-primary">Kembali</a>
                 <button class="btn btn-success" type="submit" name="submit">Simpan</button>
               </form>
               </div>

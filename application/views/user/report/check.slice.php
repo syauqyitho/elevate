@@ -10,19 +10,19 @@
                 <h2 class="card-title">Transaksi Jasa</h2>
 
                 <div class="card-tools">
-                  <?= form_open('report') ?>
+                  <?= form_open('user/report') ?>
                     <div class="d-flex flex-wrap flex-md-nowrap">
                       <input type="date" class="form-control" name="start_date" value="<?= date('Y-m-d') ?>">
                       <input type="date" class="form-control mx-2"name="end_date" value="<?= date('Y-m-d') ?>">
                       <!-- <button class="btn btn-success" type="submit" name="submit">Submit</button> -->
                       <div class="btn-group">
-                        <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                        <button type="button" class="btn btn-success" name="submit">Submit</button>
                         <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu" role="menu">
-                          <a class="dropdown-item" href="<?= base_url('report/pdf') ?>">PDF</a>
-                          <!-- <a class="dropdown-item" href="<?= base_url('report/excel') ?>">Another action</a> -->
+                          <a class="dropdown-item" href="<?= base_url('user/report/pdf/') ?>">PDF</a>
+                          <!-- <a class="dropdown-item" href="<?= base_url('user/report/excel/') ?>">Another action</a> -->
                         </div>
                       </div>
                     </div>

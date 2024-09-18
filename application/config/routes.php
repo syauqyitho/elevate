@@ -52,3 +52,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// Authentication
+$route['login'] = 'auth/auth';
+$route['logout'] = 'auth/auth/logout';
+
+/**
+ * User Controller
+ * Activity
+*/
+$route['dashboard'] = 'user/dashboard';
+
+$route['activity'] = 'user/activity';
+$route['activity/create'] = 'user/activity/create';
+$route['activity/store'] = 'user/activity/store';
+$route['activity/show/(:num)'] = 'user/activity/show/$1';
+$route['activity/update/(:num)'] = 'user/activity/update/$1';
+$route['activity/detail/show/(:num)'] = 'user/activity_detail/show/$1';
+$route['activity/delete/(:num)'] = 'user/activity/delete/$1';
+
+// History
+$route['history'] = 'user/history';
+
+// Report
+$route['report'] = 'user/report';
+$route['report/pdf'] = 'user/report/pdf';
+$route['report/excel'] = 'user/report/excel';

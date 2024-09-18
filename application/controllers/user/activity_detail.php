@@ -12,8 +12,7 @@ class Activity_detail extends CI_Controller {
         role_user();
     }
     
-    public function detail() {
-        $id = $this->uri->segment(4);
+    public function show($id) {
         $data['activity_details'] = $this->model_activity_detail->detail($id)->row_array();
         $data['levels'] = $this->model_level->index()->result();
         $data['users'] = $this->model_user->index()->result();

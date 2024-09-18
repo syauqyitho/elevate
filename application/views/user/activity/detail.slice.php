@@ -44,7 +44,7 @@
                     </div>
                   </div>
                 </div>
-                <a href="<?= base_url('user/activity/edit/'.$activity_details['activity_id']) ?>" class="btn btn-primary">Kembali</a>
+                <a href="<?= base_url('activity/show/'.$activity_details['activity_id']) ?>" class="btn btn-primary">Kembali</a>
               </div>
               <!-- /.card-body -->
             </div>
