@@ -19,7 +19,16 @@
                       </select>
                       <input type="date" class="form-control col mx-1" name="start_date" value="<?= date('Y-m-d') ?>">
                       <input type="date" class="form-control col" name="end_date" value="<?= date('Y-m-d') ?>">
-                      <button class="btn btn-success mx-1" type="submit" name="submit">Submit</button>
+                      <div class="btn-group mx-1">
+                        <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                          <a class="dropdown-item" href="<?= base_url('admin/report/tech_pdf') ?>">PDF</a>
+                          <!-- <a class="dropdown-item" href="<?= base_url('user/report/excel/') ?>">Another action</a> -->
+                        </div>
+                      </div>
                     </div>
                   </form>
                 </div>
