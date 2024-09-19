@@ -24,15 +24,8 @@ class Activity extends CI_Controller {
         $data['histories'] = $this->model_activity->technician_ticket_list($id)->result();
         $this->slice->view('tech.activity.index', $data);
     }
-
-    public function history() {
-        $id = $this->session->user_id;
-        $data['activities'] = $this->model_activity->tech_history($id)->result();
-        $this->slice->view('tech.activity.history', $data);
-    }
     
-    public function take() {
-       $id = $this->uri->segment(4);
+    public function take($id) {
        $user_id = $this->session->user_id;
        $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
        $created_at = $dt->format("Y-m-d_H:i:s");
@@ -45,64 +38,61 @@ class Activity extends CI_Controller {
        );
        
        $this->model_activity->tech_take($id, $activities, $activity_details);
-       redirect('tech/activity/');
+       redirect('activity/tech');
     }
     
-    public function edit() {
-        if (isset($_POST['submit'])) {
-            $id = $this->uri->segment(4);
-            $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
-            $created_at = $dt->format("Y-m-d_H:i:s");
-            // configuration for file upload
-            $this->upload->initialize(array(
-                'upload_path' => './uploads',
-                'allowed_types' => 'jpg|png|jpeg',
-                'file_name' => $dt->format('Ymd_His')
-            ));
-            
-            // handle tech_img
-            if (!$this->upload->do_upload('tech_img')) {
-                $error = array('error' => $this->upload->display_errors());
-                var_dump($error);
-                exit;
-            } else {
-                $tech_img = $this->upload->data();
-            }
+    public function show($id) {
+        $data['activities'] = $this->model_activity->detail($id)->row_array();
+        $data['activity_details'] = $this->model_activity_detail->list_detail($id)->result();
+        $data['list_tech'] = $this->model_activity_tech->index($id)->result();
+        $data['users'] = $this->model_user->index()->result();
+        $data['urgencies'] = $this->model_urgency->index()->result();
+        $data['activity_status'] = $this->model_activity_status->index()->result();
+        $data['activity_categories'] = $this->model_activity_category->index()->result();
+        $data['constrain_categories'] = $this->model_constrain_category->index()->result();
+        // var_dump($data);
+        // exit;
 
-            $activity = array(
-                'activity_status_id' => $this->input->post('activity_status'),
-            );
-
-            $activity_detail = array(
-                'action_description' => $this->input->post('action_description'),
-                'level' => $this->input->post('level'),
-                'urgency' => $this->input->post('urgency'),
-                'analyze' => $this->input->post('analyze'),
-                'troubleshooting' => $this->input->post('troubleshooting'),
-                'reason' => $this->input->post('reason'),
-                'img' => $tech_img['file_name']
-            ); 
-            
-            $id = $this->uri->segment(4);
-            // var_dump($id, $activity, $activity_detail);
-            // exit;
-            $this->model_activity->tech_update($id, $activity, $activity_detail);
-            redirect('tech/activity/index');
+        return $this->slice->view('tech.activity.show', $data);
+    }
+    
+    public function update($id) {
+        $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
+        $created_at = $dt->format("Y-m-d_H:i:s");
+        // configuration for file upload
+        $this->upload->initialize(array(
+            'upload_path' => './uploads',
+            'allowed_types' => 'jpg|png|jpeg',
+            'file_name' => $dt->format('Ymd_His')
+        ));
+        
+        // handle tech_img
+        if (!$this->upload->do_upload('tech_img')) {
+            $error = array('error' => $this->upload->display_errors());
+            var_dump($error);
+            exit;
         } else {
-            $id = $this->uri->segment(4);
-            $data['activities'] = $this->model_activity->detail($id)->row_array();
-            $data['activity_details'] = $this->model_activity_detail->list_detail($id)->result();
-            $data['list_tech'] = $this->model_activity_tech->index($id)->result();
-            $data['users'] = $this->model_user->index()->result();
-            $data['urgencies'] = $this->model_urgency->index()->result();
-            $data['activity_status'] = $this->model_activity_status->index()->result();
-            $data['activity_categories'] = $this->model_activity_category->index()->result();
-            $data['constrain_categories'] = $this->model_constrain_category->index()->result();
-            // var_dump($data);
-            // exit;
-
-            return $this->slice->view('tech.activity.detail', $data);
+            $tech_img = $this->upload->data();
         }
+
+        $activity = array(
+            'activity_status_id' => $this->input->post('activity_status'),
+        );
+
+        $activity_detail = array(
+            'action_description' => $this->input->post('action_description'),
+            'level' => $this->input->post('level'),
+            'urgency' => $this->input->post('urgency'),
+            'analyze' => $this->input->post('analyze'),
+            'troubleshooting' => $this->input->post('troubleshooting'),
+            'reason' => $this->input->post('reason'),
+            'img' => $tech_img['file_name']
+        ); 
+        
+        // var_dump($id, $activity, $activity_detail);
+        // exit;
+        $this->model_activity->tech_update($id, $activity, $activity_detail);
+        redirect('activity/tech');
     }
 
     public function report() {

@@ -88,13 +88,13 @@
                         </div>
                       </div>
                     </div>
-                    <a href="<?= base_url('tech/activity/') ?>" class="btn btn-primary">Kembali</a>
+                    <a href="<?= base_url('activity/tech') ?>" class="btn btn-primary">Kembali</a>
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="list-tech">
                     <div class="card" style="height: 65vh">
                       <div class="card-header">
-                        <a href="<?= base_url('tech/activity_tech/add/'.$activities['activity_id']) ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Tambah Teknisi</a>
+                        <a href="<?= base_url('activity/create-tech/tech/'.$activities['activity_id']) ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Tambah Teknisi</a>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body table-responsive p-0" >
@@ -107,7 +107,7 @@
                                 </td>
                                 <td class="align-middle">
                                   <div>
-                                    <a href="<?= base_url('tech/activity_tech/delete/'.$lt->activity_tech_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="<?= base_url('activity/delete-tech/tech/'.$lt->activity_tech_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                                   </div>
                                 </td>
                               </tr>
@@ -122,7 +122,7 @@
                   <div class="tab-pane" id="tech-detail">
                     <div class="card" style="height: 65vh">
                       <div class="card-header">
-                        <a href="<?= base_url('tech/activity_detail/add/'.$activities['activity_id']) ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Teknisi Detail</a>
+                        <a href="<?= base_url('activity/detail/create/tech/'.$activities['activity_id']) ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Teknisi Detail</a>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body table-responsive p-0" >
@@ -139,8 +139,8 @@
                                 <td class="align-middle"><?= $ad->level_name ?></td>
                                 <td class="align-middle"><p class="btn btn-sm btn-success"><?= $ad->name ?></p></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('tech/activity_detail/edit/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-primary">Detail</a>
-                                    <a href="<?= base_url('tech/activity_detail/delete/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="<?= base_url('activity/detail/show/tech/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-primary">Detail</a>
+                                    <a href="<?= base_url('activity/detail/delete/tech/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                                 </td>
                               </tr>
                             <?php  endforeach ?>

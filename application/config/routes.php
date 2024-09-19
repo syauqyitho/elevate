@@ -78,3 +78,30 @@ $route['history'] = 'user/history';
 $route['report'] = 'user/report';
 $route['report/pdf'] = 'user/report/pdf';
 $route['report/excel'] = 'user/report/excel';
+
+/**
+ * Tech Controller
+ * Dashboard
+*/
+$route['dashboard/tech'] = 'tech/dashboard';
+
+// Activity
+$route['activity/tech'] = 'tech/activity';
+$route['activity/take/tech/(:num)'] = 'tech/activity/take/$1';
+$route['activity/show/tech/(:num)'] = 'tech/activity/show/$1';
+$route['activity/detail/create/tech/(:num)'] = 'tech/activity_detail/create/$1';
+$route['activity/detail/store/tech/(:num)'] = 'tech/activity_detail/store/$1';
+$route['activity/detail/show/tech/(:num)'] = 'tech/activity_detail/show/$1';
+$route['activity/detail/update/tech/(:num)'] = 'tech/activity_detail/update/$1';
+$route['activity/detail/delete/tech/(:num)'] = 'tech/activity_detail/delete/$1';
+
+$route['activity/create-tech/tech/(:num)'] = 'tech/activity_tech/create/$1';
+$route['activity/delete-tech/tech/(:num)'] = 'tech/activity_tech/delete/$1';
+
+// History
+$route['history/tech'] = 'tech/history';
+
+// Report
+$route['report/tech'] = 'tech/report';
+$route['report/pdf/tech'] = 'tech/report/pdf';
+$route['report/excel/tech'] = 'tech/report/excel';

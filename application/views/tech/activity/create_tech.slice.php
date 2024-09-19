@@ -10,7 +10,7 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-                <?= form_open('tech/activity_tech/add/'.$activities['activity_id']) ?>
+                <?= form_open('activity/create-tech/tech/'.$activities['activity_id']) ?>
                 <div class="form-group">
                   <label for="name">Nama Teknisi</label>
                   <select class="custom-select rounded-0" id="name" name="name">
@@ -19,7 +19,7 @@
                     <?php endforeach ?>
                   </select>
                 </div>
-                <a href="<?= base_url('tech/activity/edit/'.$activities['activity_id']) ?>" class="btn btn-primary">Kembali</a>
+                <a href="<?= base_url('activity/show/tech/'.$activities['activity_id']) ?>" class="btn btn-primary">Kembali</a>
                 <button class="btn btn-success" type="submit" name="submit">Simpan</button>
               </form>
               </div>

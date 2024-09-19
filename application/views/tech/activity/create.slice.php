@@ -9,7 +9,7 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-                <?= form_open_multipart('tech/activity_detail/add/'.$activity_details['activity_id']) ?>
+                <?= form_open_multipart('activity/detail/store/tech/'.$activity_details['activity_id']) ?>
                 <div class="form-group">
                   <label for="status">Status</label>
                   <select class="custom-select rounded-0" id="status" name="activity_status">
@@ -54,7 +54,7 @@
                     </div> -->
                   </div>
                 </div>
-                <a href="<?= base_url('tech/activity/edit/'.$activity_details['activity_id']) ?>" class="btn btn-primary">Kembali</a>
+                <a href="<?= base_url('activity/show/tech/'.$activity_details['activity_id']) ?>" class="btn btn-primary">Kembali</a>
                 <button class="btn btn-success" type="submit" name="submit">Simpan</button>
               </form>
               </div>

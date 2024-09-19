@@ -9,9 +9,8 @@ class Activity_tech extends CI_Controller {
         $this->load->model('model_activity_tech');
     }
     
-    public function add() {
+    public function create($id) {
         if (isset($_POST['submit'])) {
-            $id = $this->uri->segment(4);
             
             $data = array(
                 'activity_id' => $id,
@@ -19,12 +18,11 @@ class Activity_tech extends CI_Controller {
             );
             
             $this->model_activity_tech->add($data);
-            redirect('tech/activity/edit/'.$id);
+            redirect('activity/show/tech/'.$id);
         } else {
-            $id = $this->uri->segment(4);
             $data['activities'] = $this->model_activity_tech->add_activity_tech($id)->row_array();
             $data['users'] = $this->model_user->fetch_technician_role_list();
-            $this->slice->view('tech.activity.add_tech', $data);
+            $this->slice->view('tech.activity.create_tech', $data);
         }
     }
     
@@ -49,9 +47,7 @@ class Activity_tech extends CI_Controller {
     }
     
     public function delete($id) {
-        $id = $this->uri->segment(4);
         $this->model_activity_tech->delete($id);
-        
         redirect('tech/activity/');
     }
 }

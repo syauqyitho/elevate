@@ -30,7 +30,7 @@
                                   </div>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('tech/activity/take/'.$act->activity_id) ?>" class="btn btn-sm btn-success">Ambil</a>
+                                    <a href="<?= base_url('activity/take/tech/'.$act->activity_id) ?>" class="btn btn-sm btn-success">Ambil</a>
                                 </td>
                               </tr>
                             <?php  endforeach ?>
@@ -58,7 +58,7 @@
                                   </div>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('tech/activity/edit/'.$hs->activity_id) ?>" class="btn btn-sm btn-primary">Detail</a>
+                                    <a href="<?= base_url('activity/show/tech/'.$hs->activity_id) ?>" class="btn btn-sm btn-primary">Detail</a>
                                 </td>
                               </tr>
                             <?php  endforeach ?>
