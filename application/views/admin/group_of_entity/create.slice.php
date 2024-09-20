@@ -11,7 +11,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <?= form_open_multipart('admin/group_of_entity/add') ?>
+              <?= form_open_multipart('entity-group/store/admin') ?>
                 <div class="card-body">
                   <div class="form-group">
                     <label for="enterprise">Nama Badan Usaha</label>
@@ -41,7 +41,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <a href="<?= base_url('admin/group_of_entity/') ?>" class="btn btn-primary">Kembali</a>
+                  <a href="<?= base_url('entity-group/admin') ?>" class="btn btn-primary">Kembali</a>
                   <button type="submit" class="btn btn-success" name="submit">Submit</button>
                 </div>
               </form>

@@ -15,7 +15,7 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
-                    <?= form_open_multipart('admin/activity/edit/'.$activities['activity_id']) ?>
+                    <?= form_open_multipart('activity/update/admin/'.$activities['activity_id']) ?>
                       <div class="form-group">
                         <label for="created_at">Waktu Laporan</label>
                         <input type="text" class="form-control rounded-0" id="created_at" placeholder="Waktu Keluhan" value="<?= $activities['created_at'] ?>" disabled>
@@ -99,7 +99,7 @@
                           </div>
                         </div>
                       </div>
-                      <a href="<?= base_url('admin/activity/') ?>" class="btn btn-primary">Kembali</a>
+                      <a href="<?= base_url('activity/admin') ?>" class="btn btn-primary">Kembali</a>
                       <button class="btn btn-success" type="submit" name="submit">Simpan</button>
                     </form>
                   </div>
@@ -107,7 +107,7 @@
                   <div class="tab-pane" id="list-tech">
                     <div class="card" style="height: 65vh">
                       <div class="card-header">
-                        <a href="<?= base_url('admin/activity_tech/add/'.$activities['activity_id']) ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Tambah Teknisi</a>
+                        <a href="<?= base_url('activity/create-tech/admin/'.$activities['activity_id']) ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Tambah Teknisi</a>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body table-responsive p-0" >
@@ -120,8 +120,8 @@
                                 </td>
                                 <td class="align-middle">
                                   <div>
-                                    <a href="<?= base_url('admin/activity_tech/edit/'.$lt->activity_tech_id) ?>" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="<?= base_url('admin/activity_tech/delete/'.$lt->activity_tech_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="<?= base_url('activity/show-tech/admin/'.$lt->activity_tech_id) ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= base_url('activity/delete-tech/admin/'.$lt->activity_tech_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                                   </div>
                                 </td>
                               </tr>
@@ -136,7 +136,7 @@
                   <div class="tab-pane" id="tech-detail">
                     <div class="card" style="height: 65vh">
                       <div class="card-header">
-                        <a href="<?= base_url('admin/activity_detail/add/'.$activities['activity_id']) ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Teknisi Detail</a>
+                        <a href="<?= base_url('activity/detail/create/admin/'.$activities['activity_id']) ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Teknisi Detail</a>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body table-responsive p-0" >
@@ -152,8 +152,8 @@
                                 </td>
                                 <td class="align-middle"><?= $ad->level_name ?></td>
                                 <td class="align-middle">
-                                    <a href="<?= base_url('admin/activity_detail/edit/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-primary">Detail</a>
-                                    <a href="<?= base_url('admin/activity_detail/delete/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="<?= base_url('activity/detail/show/admin/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-primary">Detail</a>
+                                    <a href="<?= base_url('activity/detail/delete/admin/'.$ad->activity_detail_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                                 </td>
                               </tr>
                             <?php  endforeach ?>

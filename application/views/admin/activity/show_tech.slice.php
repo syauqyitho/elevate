@@ -10,7 +10,7 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-                <?= form_open('admin/activity_tech/edit/'.$activities['activity_tech_id']) ?>
+                <?= form_open('activity/update-tech/admin/'.$activities['activity_tech_id']) ?>
                 <input type="hidden" value="<?= $activities['activity_id'] ?>" name="activity_id">
                 <div class="form-group">
                   <label for="name">Nama Teknisi</label>
@@ -20,7 +20,7 @@
                     <?php endforeach ?>
                   </select>
                 </div>
-                <a href="<?= base_url('admin/activity/edit/'.$activities['activity_id']) ?>" class="btn btn-primary">Kembali</a>
+                <a href="<?= base_url('activity/show/admin/'.$activities['activity_id']) ?>" class="btn btn-primary">Kembali</a>
                 <button class="btn btn-success" type="submit" name="submit">Simpan</button>
               </form>
               </div>

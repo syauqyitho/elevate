@@ -13,59 +13,53 @@ class Enterprise extends CI_Controller {
 
     public function index() {
         $data['enterprises'] = $this->model_enterprise->index()->result();
-
         $this->slice->view('admin.enterprise.index', $data);
     }
     
-    public function add() {
-        if (isset($_POST['submit'])) {
-            $enterprise_name = $this->input->post('enterprise_name');
-            $status = $this->input->post('status');
-            $data = array(
-                 'enterprise_name' => $enterprise_name,
-                 'enterprise_status_id' => $status
-            );
+    public function create() {
+        $data['enterprise_status'] = $this->model_enterprise_status->index()->result();
+        // var_dump($data);
+        // exit;
 
-            $this->model_enterprise->add($data);
-
-            redirect('admin/enterprise/index');
-        } else {
-            $data['enterprise_status'] = $this->model_enterprise_status->index()->result();
-            // var_dump($data);
-            // exit;
-
-            $this->slice->view('admin.enterprise.add', $data); 
-        }
+        $this->slice->view('admin.enterprise.create', $data); 
     }
     
-    public function edit() {
-        if (isset($_POST['submit'])) {
-            $id = $this->uri->segment(4);
-            $enterprise_name = $this->input->post('enterprise_name');
-            $status = $this->input->post('status');
-            $data = array(
-                'enterprise_name' => $enterprise_name,
-                'enterprise_status_id' => $status
-            );
+    public function store() {
+        $enterprise_name = $this->input->post('enterprise_name');
+        $status = $this->input->post('status');
+        $data = array(
+             'enterprise_name' => $enterprise_name,
+             'enterprise_status_id' => $status
+        );
 
-            $this->model_enterprise->update($id, $data);
-            redirect('admin/enterprise');
-        } else {
-            $id = $this->uri->segment(4);
-            $data['enterprise_status'] = $this->model_enterprise_status->index()->result();
-            $data['enterprises'] = $this->model_enterprise->edit($id)->row_array();
-            // var_dump($data);
-            // exit;
-            
-            $this->slice->view('admin/enterprise/edit', $data);
-        }
+        $this->model_enterprise->add($data);
+        redirect('enterprise/admin');
+    }
+
+    public function show($id) {
+        $data['enterprise_status'] = $this->model_enterprise_status->index()->result();
+        $data['enterprises'] = $this->model_enterprise->edit($id)->row_array();
+        // var_dump($data);
+        // exit;
         
+        $this->slice->view('admin.enterprise.show', $data);
+    }
+    
+    public function update($id) {
+        $enterprise_name = $this->input->post('enterprise_name');
+        $status = $this->input->post('status');
+        $data = array(
+            'enterprise_name' => $enterprise_name,
+            'enterprise_status_id' => $status
+        );
+
+        $this->model_enterprise->update($id, $data);
+        redirect('admin/enterprise');
     }
     
     public function delete($id) {
-        $id = $this->uri->segment(4);
         $this->model_enterprise->delete($id);
         
-        redirect('admin/enterprise');
+        redirect('enterprise/admin');
     }
 }

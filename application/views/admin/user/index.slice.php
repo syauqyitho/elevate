@@ -8,7 +8,7 @@
             <div class="card card-primary">
               <div class="card-header">
                 <!-- <h3 class="card-title"></h3> -->
-                <a href="<?= base_url('admin/user/add/') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Tambah Pengguna</a>
+                <a href="<?= base_url('user/create/admin') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Tambah Pengguna</a>
 
                 <!-- <div class="">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -35,8 +35,8 @@
                           </div>
                         </td>
                         <td class="align-middle">
-                            <a href="<?= base_url('admin/user/edit/'.$usr->user_id) ?>" class="btn btn-sm btn-primary">Detail</a>
-                            <a href="<?= base_url('admin/user/delete/'.$usr->user_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
+                            <a href="<?= base_url('user/show/admin/'.$usr->user_id) ?>" class="btn btn-sm btn-primary">Detail</a>
+                            <a href="<?= base_url('user/delete/admin/'.$usr->user_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                         </td>
                       </tr>
                     <?php  endforeach ?>

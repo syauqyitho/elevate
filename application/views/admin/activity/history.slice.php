@@ -1,4 +1,4 @@
-@extends('layouts.app.user')
+@extends('layouts.app.admin')
 
 @section('title', 'List Transaksi Jasa')
 
@@ -23,7 +23,7 @@
                         </td>
                         <td class="align-middle"><?= $act->status ?></td>
                         <td class="align-middle">
-                            <a href="<?= base_url('tech/activity/edit/'.$act->activity_id) ?>" class="btn btn-sm btn-primary">Detail</a>
+                            <a href="<?= base_url('activity/show/admin/'.$act->activity_id) ?>" class="btn btn-sm btn-primary">Detail</a>
                         </td>
                       </tr>
                     <?php  endforeach ?>

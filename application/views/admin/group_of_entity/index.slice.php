@@ -8,7 +8,7 @@
             <div class="card card-primary">
               <div class="card-header">
                 <!-- <h3 class="card-title"></h3> -->
-                <a href="<?= base_url('admin/group_of_entity/add') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Kelompok Badan Usaha</a>
+                <a href="<?= base_url('entity-group/create/admin') ?>" class="card-tools btn btn-success"><i class="fas fa-plus mx-1"></i>Kelompok Badan Usaha</a>
 
                 <!-- <div class="">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -35,8 +35,8 @@
                           </div>
                         </td>
                         <td class="align-middle">
-                          <a href="<?= base_url('admin/group_of_entity/edit/'.$goe->group_of_entity_id) ?>" class="btn btn-sm btn-primary">Edit</a>
-                          <a href="<?= base_url('admin/group_of_entity/delete/'.$goe->group_of_entity_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
+                          <a href="<?= base_url('entity-group/show/admin/'.$goe->group_of_entity_id) ?>" class="btn btn-sm btn-primary">Edit</a>
+                          <a href="<?= base_url('entity-group/delete/admin/'.$goe->group_of_entity_id) ?>" class="btn btn-sm btn-danger">Hapus</a>
                         </td>
                       </tr>
                     <?php  endforeach ?>

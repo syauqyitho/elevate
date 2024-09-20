@@ -1,6 +1,6 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?= base_url('welcome/welcome') ?>" class="brand-link">
+    <a href="<?= base_url('dashboard/admin') ?>" class="brand-link">
       <img src="<?= base_url('assets/dist/img/AdminLTELogo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -14,7 +14,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?= base_url('admin/activity/index') ?>" class="nav-link">
+            <a href="<?= base_url('activity/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-paper-plane"></i>
               <p>
                 Jasa
@@ -22,7 +22,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/constrain_category/index') ?>" class="nav-link">
+            <a href="<?= base_url('constrain/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-toolbox"></i>
               <p>
                 Kategori Kendala
@@ -30,7 +30,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/activity_category/index') ?>" class="nav-link">
+            <a href="<?= base_url('activity/category/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-bullseye"></i>
               <p>
                 Kategori Jasa
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/company_branch/index') ?>" class="nav-link">
+            <a href="<?= base_url('branch/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
                Cabang
@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/group_of_entity/index') ?>" class="nav-link">
+            <a href="<?= base_url('entity-group/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-sitemap"></i>
               <p>
                Kelompok Badan Usaha
@@ -54,7 +54,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/enterprise/index') ?>" class="nav-link">
+            <a href="<?= base_url('enterprise/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-briefcase"></i>
               <p>
                 Badan Usaha
@@ -62,7 +62,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/enterprise_status/index') ?>" class="nav-link">
+            <a href="<?= base_url('enterprise/status/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-stream"></i>
               <p>
                 Status Badan Usaha
@@ -70,7 +70,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/user/') ?>" class="nav-link">
+            <a href="<?= base_url('user/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Pengguna
@@ -78,7 +78,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/report/') ?>" class="nav-link">
+            <a href="<?= base_url('history/admin') ?>" class="nav-link">
               <i class="nav-icon fas fa-history"></i>
               <p>
                 Riwayat
@@ -95,13 +95,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url('admin/report/user/') ?>" class="nav-link">
+                <a href="<?= base_url('report/user/admin') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/report/tech/') ?>" class="nav-link">
+                <a href="<?= base_url('report/tech/admin') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Technician</p>
                 </a>

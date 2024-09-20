@@ -10,7 +10,7 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-                <?= form_open_multipart('admin/activity/add') ?>
+                <?= form_open_multipart('activity/store/admin') ?>
                 <div class="form-group">
                   <label for="name">Nama Pengorder</label>
                   <select class="custom-select rounded-0" id="name" name="name">
@@ -63,7 +63,7 @@
                     </div> -->
                   </div>
                 </div>
-                <a href="<?= base_url('admin/activity/') ?>" class="btn btn-primary">Kembali</a>
+                <a href="<?= base_url('activity/admin') ?>" class="btn btn-primary">Kembali</a>
                 <button class="btn btn-success" type="submit" name="submit">Simpan</button>
               </form>
               </div>

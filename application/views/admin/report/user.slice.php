@@ -10,7 +10,7 @@
                 <h2 class="card-title">User Transaksi Jasa</h2>
 
                 <div class="card-tools col-md-8">
-                  <?= form_open('admin/report/user/') ?>
+                  <?= form_open('report/user/admin') ?>
                     <div class="d-flex flex-wrap flex-md-nowrap">
                       <select class="custom-select rounded-0 col" name="name">
                         <?php foreach($users as $user) : ?>
@@ -25,8 +25,8 @@
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu" role="menu">
-                          <a class="dropdown-item" href="<?= base_url('admin/report/user_pdf') ?>">PDF</a>
-                          <!-- <a class="dropdown-item" href="<?= base_url('user/report/excel/') ?>">Another action</a> -->
+                          <a class="dropdown-item" href="<?= base_url('report/user-pdf/admin') ?>">PDF</a>
+                          <!-- <a class="dropdown-item" href="<?= base_url('admin/report/excel/') ?>">Another action</a> -->
                         </div>
                       </div>
                     </div>

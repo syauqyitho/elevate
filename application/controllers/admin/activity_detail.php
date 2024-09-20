@@ -16,161 +16,151 @@ class Activity_detail extends CI_Controller {
         role_admin();
     }
 
-    public function add() {
-        if (isset($_POST['submit'])) {
-            $id = $this->uri->segment(4);
-            $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
-            $created_at = $dt->format("Y-m-d_H:i:s");
-            // configuration for file upload
-            $this->upload->initialize(array(
-                'upload_path' => './uploads',
-                'allowed_types' => 'jpg|png|jpeg',
-                'file_name' => $dt->format('Y-m-d_His')
-            ));
-            
-            if ($_FILES['img']['name'] !== '') {
-                if (!$this->upload->do_upload('img')) {
-                    $error = array('error' => $this->upload->display_errors());
-                    var_dump($error);
-                    exit;
-                } else {
-                    $tech_img = $this->upload->data();
-                }
+    public function create($id) {
+        $data['activity_details'] = $this->model_activity_detail->activity_detail($id)->row_array();
+        $data['users'] = $this->model_user->tech_role($id)->result();
+        $data['levels'] = $this->model_level->index()->result();
+        $data['activity_status'] = $this->model_activity_status->index()->result();
+        // var_dump($data);
+        // exit;
 
-                $activity = array(
-                    'activity_status_id' => $this->input->post('activity_status'),
-                );
+        return $this->slice->view('admin.activity.create_detail', $data);
+    }
 
-                $activity_detail = array(
-                    // the user_id from input field is to find the activity_tech_id
-                    'activity_tech_id' => $this->input->post('name'),
-                    'action_description' => $this->input->post('action_description'),
-                    'level_id' => $this->input->post('level'),
-                    'analyze' => $this->input->post('analyze'),
-                    'troubleshooting' => $this->input->post('troubleshooting'),
-                    'reason' => $this->input->post('reason'),
-                    'img' => $tech_img['file_name'],
-                    'created_at' => $created_at
-                ); 
-                
-                // var_dump($id, $activity, $activity_detail);
-                // exit;
-                $id = $this->uri->segment(4);
-                $this->model_activity_detail->tech_add($id, $activity, $activity_detail);
-                redirect('admin/activity');
+    public function store($id) {
+        $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
+        $created_at = $dt->format("Y-m-d_H:i:s");
+        // configuration for file upload
+        $this->upload->initialize(array(
+            'upload_path' => './uploads',
+            'allowed_types' => 'jpg|png|jpeg',
+            'file_name' => $dt->format('Y-m-d_His')
+        ));
+        
+        if ($_FILES['img']['name'] !== '') {
+            if (!$this->upload->do_upload('img')) {
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+                exit;
             } else {
-                $activity = array(
-                    'activity_status_id' => $this->input->post('activity_status'),
-                );
-
-                $activity_detail = array(
-                    // the user_id from input field is to find the activity_tech_id
-                    'activity_tech_id' => $this->input->post('name'),
-                    'action_description' => $this->input->post('action_description'),
-                    'level_id' => $this->input->post('level'),
-                    'analyze' => $this->input->post('analyze'),
-                    'troubleshooting' => $this->input->post('troubleshooting'),
-                    'reason' => $this->input->post('reason'),
-                    'created_at' => $created_at
-                ); 
-                
-                // var_dump($id, $activity, $activity_detail);
-                // exit;
-                $id = $this->uri->segment(4);
-                $this->model_activity_detail->tech_add($id, $activity, $activity_detail);
-                redirect('admin/activity');
+                $tech_img = $this->upload->data();
             }
-        } else {
-            $id = $this->uri->segment(4);
-            $data['activity_details'] = $this->model_activity_detail->activity_detail($id)->row_array();
-            $data['users'] = $this->model_user->tech_role($id)->result();
-            $data['levels'] = $this->model_level->index()->result();
-            $data['activity_status'] = $this->model_activity_status->index()->result();
-            // var_dump($data);
-            // exit;
 
-            return $this->slice->view('admin.activity.add_detail', $data);
+            $activity = array(
+                'activity_status_id' => $this->input->post('activity_status'),
+            );
+
+            $activity_detail = array(
+                // the user_id from input field is to find the activity_tech_id
+                'activity_tech_id' => $this->input->post('name'),
+                'action_description' => $this->input->post('action_description'),
+                'level_id' => $this->input->post('level'),
+                'analyze' => $this->input->post('analyze'),
+                'troubleshooting' => $this->input->post('troubleshooting'),
+                'reason' => $this->input->post('reason'),
+                'img' => $tech_img['file_name'],
+                'created_at' => $created_at
+            ); 
+            
+            // var_dump($id, $activity, $activity_detail);
+            // exit;
+            $this->model_activity_detail->tech_add($id, $activity, $activity_detail);
+            redirect('activity/admin');
+        } else {
+            $activity = array(
+                'activity_status_id' => $this->input->post('activity_status'),
+            );
+
+            $activity_detail = array(
+                // the user_id from input field is to find the activity_tech_id
+                'activity_tech_id' => $this->input->post('name'),
+                'action_description' => $this->input->post('action_description'),
+                'level_id' => $this->input->post('level'),
+                'analyze' => $this->input->post('analyze'),
+                'troubleshooting' => $this->input->post('troubleshooting'),
+                'reason' => $this->input->post('reason'),
+                'created_at' => $created_at
+            ); 
+            
+            // var_dump($id, $activity, $activity_detail);
+            // exit;
+            $this->model_activity_detail->tech_add($id, $activity, $activity_detail);
+            redirect('activity/admin');
         }
+    }
+
+    public function show($id) {
+        $activity = $this->db->get_where('activity_detail', array('activity_detail_id' => $id))->row_array();
+        $activity_id = $activity['activity_id'];
+        $data['activity_details'] = $this->model_activity_detail->activity_edit($id)->row_array();
+        $data['users'] = $this->model_user->tech_role($activity_id)->result();
+        $data['levels'] = $this->model_level->index()->result();
+        $data['activity_status'] = $this->model_activity_status->index()->result();
+        // var_dump($id);
+        // exit;
+
+        return $this->slice->view('admin.activity.show_detail', $data);
     }
     
-    public function edit() {
-        if (isset($_POST['submit'])) {
-            $id = $this->uri->segment(4);
-            $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
-            // configuration for file upload
-            $this->upload->initialize(array(
-                'upload_path' => './uploads',
-                'allowed_types' => 'jpg|png|jpeg',
-                'file_name' => $dt->format('Y-m-d_His')
-            ));
-            
-            if ($_FILES['img']['name'] !== '') {
-                if (!$this->upload->do_upload('img')) {
-                    $error = array('error' => $this->upload->display_errors());
-                    var_dump($error);
-                    exit;
-                } else {
-                    $tech_img = $this->upload->data();
-                }
-
-                $activity = array(
-                    'activity_status_id' => $this->input->post('activity_status'),
-                );
-
-                $activity_detail = array(
-                    'activity_tech_id' => $this->input->post('name'),
-                    'action_description' => $this->input->post('action_description'),
-                    'level_id' => $this->input->post('level'),
-                    'analyze' => $this->input->post('analyze'),
-                    'troubleshooting' => $this->input->post('troubleshooting'),
-                    'reason' => $this->input->post('reason'),
-                    'img' => $tech_img['file_name'],
-                ); 
-                
-                // var_dump($id, $activity, $activity_detail);
-                // exit;
-                $id = $this->uri->segment(4);
-                $this->model_activity_detail->tech_update($id, $activity, $activity_detail);
-                redirect('admin/activity');
+    public function update($id) {
+        $dt = new DateTimeImmutable('now', new DateTimeZone('Asia/Jakarta'));
+        // configuration for file upload
+        $this->upload->initialize(array(
+            'upload_path' => './uploads',
+            'allowed_types' => 'jpg|png|jpeg',
+            'file_name' => $dt->format('Y-m-d_His')
+        ));
+        
+        if ($_FILES['img']['name'] !== '') {
+            if (!$this->upload->do_upload('img')) {
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+                exit;
             } else {
-                $activity = array(
-                    'activity_status_id' => $this->input->post('activity_status'),
-                );
-
-                $activity_detail = array(
-                    'activity_tech_id' => $this->input->post('name'),
-                    'action_description' => $this->input->post('action_description'),
-                    'level_Id' => $this->input->post('level'),
-                    'analyze' => $this->input->post('analyze'),
-                    'troubleshooting' => $this->input->post('troubleshooting'),
-                    'reason' => $this->input->post('reason'),
-                ); 
-                
-                // var_dump($id, $activity, $activity_detail);
-                // exit;
-                $id = $this->uri->segment(4);
-                $this->model_activity_detail->tech_update($id, $activity, $activity_detail);
-                redirect('admin/activity');
+                $tech_img = $this->upload->data();
             }
-        } else {
-            $id = $this->uri->segment(4);
-            $activity = $this->db->get_where('activity_detail', array('activity_detail_id' => $id))->row_array();
-            $activity_id = $activity['activity_id'];
-            $data['activity_details'] = $this->model_activity_detail->activity_edit($id)->row_array();
-            $data['users'] = $this->model_user->tech_role($activity_id)->result();
-            $data['levels'] = $this->model_level->index()->result();
-            $data['activity_status'] = $this->model_activity_status->index()->result();
-            // var_dump($id);
-            // exit;
 
-            return $this->slice->view('admin.activity.edit_detail', $data);
+            $activity = array(
+                'activity_status_id' => $this->input->post('activity_status'),
+            );
+
+            $activity_detail = array(
+                'activity_tech_id' => $this->input->post('name'),
+                'action_description' => $this->input->post('action_description'),
+                'level_id' => $this->input->post('level'),
+                'analyze' => $this->input->post('analyze'),
+                'troubleshooting' => $this->input->post('troubleshooting'),
+                'reason' => $this->input->post('reason'),
+                'img' => $tech_img['file_name'],
+            ); 
+            
+            // var_dump($id, $activity, $activity_detail);
+            // exit;
+            $this->model_activity_detail->tech_update($id, $activity, $activity_detail);
+            redirect('activity/admin');
+        } else {
+            $activity = array(
+                'activity_status_id' => $this->input->post('activity_status'),
+            );
+
+            $activity_detail = array(
+                'activity_tech_id' => $this->input->post('name'),
+                'action_description' => $this->input->post('action_description'),
+                'level_Id' => $this->input->post('level'),
+                'analyze' => $this->input->post('analyze'),
+                'troubleshooting' => $this->input->post('troubleshooting'),
+                'reason' => $this->input->post('reason'),
+            ); 
+            
+            // var_dump($id, $activity, $activity_detail);
+            // exit;
+            $this->model_activity_detail->tech_update($id, $activity, $activity_detail);
+            redirect('activity/admin');
         }
     }
 
-    public function delete() {
-        $id = $this->uri->segment(4);
+    public function delete($id) {
         $this->model_activity_detail->delete($id);
-        
         redirect('admin/activity/');
     }
 }

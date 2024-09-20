@@ -11,7 +11,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <?= form_open('admin/company_branch/edit/'.$company_branches['company_branch_id']) ?>
+              <?= form_open('branch/update/admin/'.$company_branches['company_branch_id']) ?>
                 <div class="card-body">
                   <div class="form-group">
                     <label for="group_of_entities">kelompok Badan Usaha</label>
@@ -36,7 +36,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <a href="<?= base_url('admin/company_branch/') ?>" class="btn btn-primary">Kembali</a>
+                  <a href="<?= base_url('branch/admin') ?>" class="btn btn-primary">Kembali</a>
                   <button type="submit" class="btn btn-success" name="submit">Submit</button>
                 </div>
               </form>

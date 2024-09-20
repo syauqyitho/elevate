@@ -528,6 +528,33 @@ class Model_activity extends CI_Model {
        $this->db->trans_complete();
     }
 
+    public function admin_history($id = null) {
+        $this->db->select('
+            a.activity_id,
+            a.constrain,
+            a.created_at,
+            ast.activity_status_name AS status,
+            u.name
+        ');
+        $this->db->from('activity a');
+        $this->db->join('activity_status ast', 'a.activity_status_id = ast.activity_status_id', 'left');
+        $this->db->join('user u', 'a.user_id = u.user_id', 'left');
+        $this->db->where('a.activity_status_id', 4);
+
+        // Apply filters
+        if ($id === null) {
+            // If no user ID is provided, filter by role ID (assuming role_id = 1 for this example)
+            $this->db->where('u.role_id', 1); // Assuming role_id = 1
+        } else {
+            $this->db->where('a.user_id', (int)$id); // Ensuring $id is an integer
+        }
+        
+        $this->db->order_by('a.activity_id');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     public function admin_user_role_report($id = null, $start_date = null, $end_date = null) {
         // if user provide date range
         if ($start_date) {
